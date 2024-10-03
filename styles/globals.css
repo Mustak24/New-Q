@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+*{ box-sizing: border-box; }
+
+body {
+  color: black;
+  background: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  margin: 0%;
+  padding: 0%;
+  background-image: url('/bg-body.jpg');
+  background-position: center;
+}
+
+::-webkit-scrollbar{display: none;}
+
+.load-onetime-self{animation: load-animation 1s;}
+.load-onetime-child *{animation: load-animation 1s;}
+.load-self{opacity: 0; transform: translateY(100%); animation: load-animation forwards linear; animation-timeline: view(80vh 0vh);}
+.load-self-sm{opacity: 0; transform: translateY(100%); animation: load-animation forwards linear; animation-timeline: view(90vh 0vh);}
+.load-child div{opacity: 0; transform: translateY(100%); animation: load-animation forwards linear; animation-timeline: view(80vh 0vh);}
+.load-child-sm div{opacity: 0; transform: translateY(100%); animation: load-animation forwards linear; animation-timeline: view(90vh 0vh);}
+.load-allchild *{opacity: 0; transform: translateY(100%); animation: load-animation forwards linear; animation-timeline: view(85vh 0vh);}
+
+
+
+footer, .load-animation-opacity{
+  opacity: 0;
+  animation: footer-animation forwards linear;
+  animation-timeline: view(90vh 0vh);
+}
+
+.text-blink{animation: text-blink-animation 1.5s infinite linear alternate;}
+
+.scroll-bar{
+  position: fixed;
+  width: 10px; height: 0px;
+  background-color: crimson;
+  left: 0px; bottom: 0px;
+  animation: scrollbar-animation linear;
+  animation-timeline: scroll();
+  z-index: 1000;
+  border-radius: 2px;
+}
+
+
+@keyframes slideLeft{
+  0%{transform: translateX(-20vmax);}
+  100%{transform: translateX(20vmax);}
+}
+@keyframes slideRight{
+  0%{transform: translateX(22vmax);}
+  100%{transform: translateX(-22vmax);}
+}
+
+@keyframes load-animation{
+  0%{opacity: 0; transform: translateY(100%);}
+  100%{opacity: 1; transform: translateY(0%);}
+}
+
+@keyframes text-blink-animation {
+  100%{opacity: .5;}
+}
+
+@keyframes scrollbar-animation {
+  100%{height: calc(100vh + 1px);}
+}
+
+@keyframes footer-animation {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}

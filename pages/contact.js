@@ -120,7 +120,7 @@ export default function Contact() {
                                 <PiMapPinLineBold className="size-10 text-red-500" />
                                 <div className="flex w-[100px] flex-col">
                                     <h1>Home / Office</h1>
-                                    <p className="text-[.8em] font-light line-clamp-1">Near JNV Rajsamand</p>
+                                    <p className="text-[.8em] font-light line-clamp-1 text-center">Near JNV Rajsamand</p>
                                 </div>
                                 <div className="line transition-all duration-500 absolute bg-red-500 h-[60px] w-[20px] left-0 rounded-full translate-x-[-50%]"></div>
                             </div>
@@ -138,7 +138,7 @@ export default function Contact() {
                         <div className="center gap-10 flex-wrap">
                             <div className="w-[250px]">
                                 <CardPc01 innerHTML={
-                                    <div className="relative gap-2 flex-col center pb-8">
+                                    <div className="relative gap-2 flex-col text-center center pb-8">
                                         <IoIosMail className='size-[100px] text-blink' />
                                         <div className="text-center font-sans font-bold opacity-75 text-black text-xl">Email</div>
                                         <div className="text-sm">We look forward to hearing from you!</div>
@@ -149,7 +149,7 @@ export default function Contact() {
                             
                             <div className="w-[250px]">
                                 <CardPc01 innerHTML={
-                                    <div className="relative gap-2 flex-col center pb-8">
+                                    <div className="relative gap-2 flex-col center pb-8 text-center">
                                         <FaPhone className='size-[100px] text-blink p-4' />
                                         <div className="text-center font-sans font-bold opacity-75 text-black text-xl">Phone</div>
                                         <div className="text-sm">Follow us for updates and inspiration.</div>
@@ -160,7 +160,7 @@ export default function Contact() {
                            
                             <div className="w-[250px]">
                                 <CardPc01 innerHTML={
-                                    <div className="relative gap-2 flex-col center pb-8">
+                                    <div className="relative gap-2 flex-col center pb-8 text-center">
                                         <PiMapPinLineBold className='size-[100px] text-blink' />
                                         <div className="text-center font-sans font-bold opacity-75 text-black text-xl">Location</div>
                                         <div className="text-sm">Connect With Us</div>

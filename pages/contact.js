@@ -142,7 +142,7 @@ export default function Contact() {
                                         <IoIosMail className='size-[100px] text-blink' />
                                         <div className="text-center font-sans font-bold opacity-75 text-black text-xl">Email</div>
                                         <div className="text-sm">We look forward to hearing from you!</div>
-                                        <div className="font-bold my-2">786mkhan.coc786@mail.com</div>
+                                        <div className="font-bold my-2 text-[.9em]">786mkhan.coc786@mail.com</div>
                                     </div>
                                 } />
                             </div>

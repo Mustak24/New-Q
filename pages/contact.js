@@ -9,6 +9,17 @@ import { useEffect } from "react";
 
 
 export default function Contact() {
+
+    async function QueryFormSubmit(e){
+        e.preventDefault()
+        let formData = Object.fromEntries(new FormData(e.target))
+        let res = await fetch(`${window.location.origin}/api/userquery`, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {'content-type': 'application/json'},
+        })
+        console.log(await res.json())
+    }
     
     useEffect(()=>{
         document.querySelector('#loc1').click()
@@ -51,9 +62,9 @@ export default function Contact() {
             {/* User Query Form */}
             <div className="center flex-col p-10 gap-10 my-10 w-full">
                 <span className="text-[1.4em] text-blink text-red-500 font-serif leading-10 text-center font-bold lg:hidden">Contect to Us</span>
-                <form className="flex-col load-onetime-self center min-w-fit w-full max-w-[1000px] min-h-fit box-border gap-2">
+                <form onSubmit={QueryFormSubmit} className="flex-col load-onetime-self center min-w-fit w-full max-w-[1000px] min-h-fit box-border gap-2">
                     <Input name='name' type='text' placeholder='Enter your Name' required={true} />
-                    <Input name='contect' type='text' placeholder='Enter your Email' required={true} minLength={10} />
+                    <Input name='contact' type='text' placeholder='Enter your Email' required={true} minLength={10} />
                     <Textarea name='msg' placeholder='Enter your Query or Message' required={true} />
                     <div className="w-full">
                         <ButtonPc title='Send' class='max-md:hidden' />

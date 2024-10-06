@@ -2,14 +2,15 @@ import Head from "next/head"
 import Image from "next/image"
 import { CardPc01, CardMobile01 } from "@/Components/Card"
 import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
+import { useEffect, useState } from "react";
 
 export function ProductCard(props) {
     const { info } = props;
     return (<>
-        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,.1)]">
-            <CardPc01 class='max-h-[280px] w-full min-w-[300px]' innerHTML={
+        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,.05)]">
+            <CardPc01 class='max-h-[300px] w-full' innerHTML={
                 <div className="w-full relative overflow-hidden rounded-lg center h-full">
-                    <Image width={300} height={400} className="w-full h-full object-cover" src={info.img} alt="Intarlan server error" />
+                    <Image width={300} height={400} className="w-full h-full object-cover" src={info?.img || '/bg-body.jpg'} alt="Intarlan server error" />
                     <div className="absolute text-sm font-bold font-mono top-1 right-2">{info?.size || ''}</div>
                 </div>
             } />
@@ -28,6 +29,19 @@ export function ProductCard(props) {
 }
 
 export default function Products() {
+
+    const [products, setProducts] = useState([])
+
+    async function gellAllProducts() {
+        let res = await fetch(`${window.location.origin}/api/getallproducts`);
+        let data = await res.json()
+        setProducts(data);
+    }
+
+    useEffect(()=>{
+        gellAllProducts();
+    }, []);
+
     return (<>
         <Head>
             <title>Products</title>
@@ -50,14 +64,7 @@ export default function Products() {
             </div>
 
             <div className="w-full center flex-wrap px-10 py-20 gap-10">
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: 'Elevate your home or business with our premium selection of marble products.' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: '', size: '20x20' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: '', size: '20x20' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: 'Elevate your home or business with our premium selection of marble products.' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: 'Elevate your home or business with our premium selection of marble products.' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: '', size: '20x20' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: 'Elevate your home or business with our premium selection of marble products.' }} />
-                <ProductCard info={{ img: '/bg-body.jpg', price: '*100 Sqr/f', available: true, dec: '', size: '20x20' }} />
+                {products.map((e, i)=> <div key={i}> <ProductCard info={e} /> </div>  )}   
             </div>
         </main>
     </>)

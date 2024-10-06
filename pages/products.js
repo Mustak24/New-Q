@@ -2,6 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { CardPc01, CardMobile01 } from "@/Components/Card"
 import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
+import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
 
 export function ProductCard(props) {
@@ -31,11 +32,14 @@ export function ProductCard(props) {
 export default function Products() {
 
     const [products, setProducts] = useState([])
+    const [isLoading, setLoading] = useState(false)
 
     async function gellAllProducts() {
+        setLoading(true);   
         let res = await fetch(`${window.location.origin}/api/getallproducts`);
         let data = await res.json()
         setProducts(data);
+        setLoading(false);
     }
 
     useEffect(()=>{
@@ -63,8 +67,9 @@ export default function Products() {
                 </div>
             </div>
 
-            <div className="w-full center flex-wrap px-10 py-20 gap-10">
-                {products.map((e, i)=> <div key={i}> <ProductCard info={e} /> </div>  )}   
+            <div className="w-full center max-sm:flex-col flex-wrap px-10 py-20 gap-10">
+            
+                {isLoading ? <Loading /> : products.map((e, i)=> <div key={i}> <ProductCard info={e} /> </div>  )}   
             </div>
         </main>
     </>)

@@ -2,7 +2,7 @@ export default function Loading(props) {
     return (<div className="text-black center w-full h-full rounded-full">
         {[1, 2, 3].map((i) => {
             return (
-                <span className="relative center min-size-[50vw] size-[10vw]">
+                <span key={i} className="relative center min-size-[50vw] size-[10vw]">
                     <span
                         className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
                         style={{

@@ -31,7 +31,7 @@ export function ProductCard(props) {
 
 export default function Products(props) {
 
-    const { alerts, setAlert } = props
+    const { alerts, setAlert } = props;
     const [products, setProducts] = useState([])
     const [isLoading, setLoading] = useState(false)
 

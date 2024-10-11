@@ -1,7 +1,12 @@
-export default function About(){
-    return(<>
-        <div className="w-full h-screen">
+import { ButtonPc_01 } from "@/Components/Button";
 
+export default function About(props){
+    const {alerts, setAlert} = props
+    return(<>
+        <div className="w-full h-screen center">
+            <div className="w-20">
+
+            </div>
         </div>
     </>)
 }

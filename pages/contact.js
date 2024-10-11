@@ -8,17 +8,22 @@ import Head from "next/head"
 import { useEffect } from "react";
 
 
-export default function Contact() {
+export default function Contact(props) {
+
+    const {alerts, setAlert} = props;
 
     async function QueryFormSubmit(e){
-        e.preventDefault()
+        e.preventDefault();
         let formData = Object.fromEntries(new FormData(e.target))
+        e.target.reset();
+        setAlert([...alerts, {type: 'info', title: 'Wait Sending...', dec: 'Your messege will be sending to New Quality Marble.'}])
         let res = await fetch(`${window.location.origin}/api/userquery`, {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {'content-type': 'application/json'},
         })
-        console.log(await res.json())
+        res = await res.json()
+        if(res.alert) setAlert((alerts)=>[...alerts, res.alert])
     }
     
     useEffect(()=>{

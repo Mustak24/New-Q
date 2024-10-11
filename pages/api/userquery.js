@@ -4,10 +4,9 @@ import UserQuery from "./Schemas/UserQuery";
 export default async function (req, res){
     try{
         await connectToDb();
-        let query = await UserQuery.create(req.body);
-        res.send({res: 'Send successfully',query})
+        await UserQuery.create(req.body);
+        res.json({alert:{type: 'success', title: 'Send', dec: 'Your Qurey will be send.'}})
     } catch(e){
-        console.log(e);
-        res.status(500).send({res: 'Error',error:e})
+        res.status(500).json({alert:{type: 'error', title: 'Error', dec: 'Due to Internal server error your Query will not be send !!!'}})
     }
 }

@@ -9,10 +9,8 @@ export default function App({ Component, pageProps }) {
   return (<>
       <div className="scroll-bar"></div>
       <Navbar />
-      <div className="relavite">
-        <Alert alerts={alerts} />
-        <Component {...pageProps} alerts={alerts} setAlert={setAlert} />
-      </div>
+      <Alert alerts={alerts} />
+      <Component {...pageProps} alerts={alerts} setAlert={setAlert} />
       <Footer />
     
   </>)

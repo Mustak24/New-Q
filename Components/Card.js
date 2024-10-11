@@ -58,7 +58,7 @@ export function AlertCard(props) {
         },100)
     })
     return (<>
-        <div ref={alertBox} className={`w-[250px] h-[80px] scale-[.8] opacity-0 transition-all duration-500 relative flex flex-col backdrop-blur-sm rounded-sm p-2 overflow-hidden after:content-[''] after:absolute after:translate-y-[-50%] after:top-[50%] after:left-0 after:duration-[3s] after:transition-all after:ease-linear after:h-0 after:border-2 ${cardTypes[info.type].afterBorder} ${cardTypes[info.type].bg} ${cardTypes[info.type].text}`}>
+        <div ref={alertBox} className={`w-[250px] h-[80px] scale-[.8] opacity-0 transition-all duration-500 relative flex flex-col backdrop-blur-sm rounded-sm p-2 overflow-hidden after:content-[''] after:absolute after:translate-y-[-50%] after:top-[50%] after:left-0 after:duration-[3s] after:transition-all after:ease-linear after:h-0 after:border-2 ${cardTypes[info.type]?.afterBorder || ''} ${cardTypes[info.type]?.bg || ''} ${cardTypes[info.type]?.text || ''}`}>
             <h1 className="font-bold">{info?.title || ''}</h1>
             <p className="text-sm font-sans line-clamp-2 text-pretty">{info?.dec || ''}</p>
         </div>

@@ -2,10 +2,24 @@ import "@/styles/globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import Alert from "@/Components/Alert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }) {
+ 
   const [alerts, setAlert] = useState([])
+ 
+  useEffect(()=>{
+
+    window.onoffline = () => {
+      setAlert([...alerts, {type: 'error', title: 'Offline', dec: 'No Internet connetion.'}])
+    }
+    
+    window.ononline = () => {
+      setAlert([...alerts, {type: 'success', title: 'Online', dec: 'Internet connetion is back.'}])
+    }
+
+  })
+  
   return (<>
       <div className="scroll-bar"></div>
       <Navbar />

@@ -14,16 +14,25 @@ export default function Contact(props) {
 
     async function QueryFormSubmit(e){
         e.preventDefault();
+        if(!window.navigator.onLine) return setAlert([...alerts, {type: 'error', title: 'No Internet', dec: 'Query are not be Send due to no Internet connnection.'}]);
         let formData = Object.fromEntries(new FormData(e.target))
         e.target.reset();
         setAlert([...alerts, {type: 'info', title: 'Wait Sending...', dec: 'Your messege will be sending to New Quality Marble.'}])
+
+        let time = 3000;
+        let timer = setInterval(()=> time ? time-=100 : '' ,100);
+
         let res = await fetch(`${window.location.origin}/api/userquery`, {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {'content-type': 'application/json'},
         })
         res = await res.json()
-        if(res.alert) setAlert((alerts)=>[...alerts, res.alert])
+
+        clearInterval(timer);
+        setTimeout(()=>{
+            if(res.alert) setAlert((alerts)=>[...alerts, res.alert])
+        },time)
     }
     
     useEffect(()=>{
@@ -73,7 +82,7 @@ export default function Contact(props) {
                     <Textarea name='msg' placeholder='Enter your Query or Message' required={true} />
                     <div className="w-full">
                         <ButtonPc title='Send' class='max-md:hidden' />
-                        <ButtonMobile title='Send' class='md:hidden' scale='40' />
+                        <ButtonMobile title='Send' class='md:hidden' scale='200' />
                     </div>
                 </form>
             </div>

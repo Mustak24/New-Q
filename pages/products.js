@@ -1,33 +1,11 @@
 import Head from "next/head"
 import Image from "next/image"
-import { CardPc01, CardMobile01 } from "@/Components/Card"
+import { CardPc01 } from "@/Components/Card"
 import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
 import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
+import getallproducts from "./api/getallproducts";
 
-export function ProductCard(props) {
-    const { info } = props;
-    return (<>
-        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,.05)]">
-            <CardPc01 class='max-h-[300px] w-full' innerHTML={
-                <div className="w-full relative overflow-hidden rounded-lg center h-full">
-                    <Image width={300} height={400} className="w-full h-full object-cover" src={info?.img || '/bg-body.jpg'} alt="Intarlan server error" />
-                    <div className="absolute text-sm font-bold font-mono top-1 right-2">{info?.size || ''}</div>
-                </div>
-            } />
-            <div className="flex justify-between w-full ">
-                <h1 className="font-sans font-bold">{info.price}</h1>
-                <div className="center gap-1 text-red-500" style={{ display: !info.available ? 'flex' : 'none' }}>
-                    <span>(</span><h1 className="w-fit text-sm">Out of Stock</h1><span>)</span>
-                </div>
-                <div className="center gap-1 text-green-500" style={{ display: info.available ? 'flex' : 'none' }}>
-                    <span>(</span><h1 className="w-fit text-sm">Available</h1><span>)</span>
-                </div>
-            </div>
-            <p className="text-sm h-10 font-sans line-clamp-2 w-full px-2 text-pretty">{info.dec}</p>
-        </div>
-    </>)
-}
 
 export default function Products(props) {
 
@@ -37,8 +15,9 @@ export default function Products(props) {
 
     async function gellAllProducts() {
         setLoading(true);
+        if (!window.navigator.onLine) return setAlert([...alerts, { type: 'error', title: 'No Internet', dec: 'Products are not be load due to no Internet connnection.' }])
         let res = await fetch(`${window.location.origin}/api/getallproducts`);
-        res = await res.json()
+        res = await res.json();
         setLoading(false);
         setProducts(res?.products || []);
         if (res.alert) setAlert([...alerts, res.alert])
@@ -46,6 +25,9 @@ export default function Products(props) {
 
     useEffect(() => {
         gellAllProducts();
+
+        window.ononline = () => { if(!+products) return getallproducts(); }
+        
     }, []);
 
     return (<>
@@ -73,5 +55,31 @@ export default function Products(props) {
                 {isLoading ? <Loading /> : products.map((e, i) => <div key={i}> <ProductCard info={e} /> </div>)}
             </div>
         </main>
+    </>)
+}
+
+
+
+export function ProductCard(props) {
+    const { info } = props;
+    return (<>
+        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,.05)]">
+            <CardPc01 class='max-h-[300px] w-full' innerHTML={
+                <div className="w-full relative overflow-hidden rounded-lg center h-full">
+                    <Image width={300} height={400} className="w-full h-full object-cover" src={info?.img || '/bg-body.jpg'} alt="Intarlan server error" />
+                    <div className="absolute text-sm font-bold font-mono top-1 right-2" style={{ textShadow: '0 0 3px white' }}>{info?.size || ''}</div>
+                </div>
+            } />
+            <div className="flex justify-between w-full ">
+                <h1 className="font-sans font-bold">{info.price}</h1>
+                <div className="center gap-1 text-red-500" style={{ display: !info.available ? 'flex' : 'none' }}>
+                    <span>(</span><h1 className="w-fit text-sm">Out of Stock</h1><span>)</span>
+                </div>
+                <div className="center gap-1 text-green-500" style={{ display: info.available ? 'flex' : 'none' }}>
+                    <span>(</span><h1 className="w-fit text-sm">Available</h1><span>)</span>
+                </div>
+            </div>
+            <p className="text-sm h-10 font-sans line-clamp-2 w-full px-2 text-pretty">{info.dec}</p>
+        </div>
     </>)
 }

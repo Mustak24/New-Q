@@ -1,13 +1,14 @@
-import connectToDb from "@/Functions/ConnectToDb";
+
+import connectToDb from "./Middlewares/ConnectToDb";
 import Product from "./Schemas/Product";
 
-export default async function(req, res){
+async function callback(req, res){
     try{
-        let dbRes = await connectToDb();
-        if(!dbRes) return res.json({alert: {type: 'error', title: 'Server Error', dec: 'Due to internal server error products are not be load !!!'}});
         let products = await Product.find()
-        return res.json({products})
+        return res.status(200).json({products})
     } catch(e){
-        return res.json({alert: {type: 'error', title: 'Server Error', dec: 'Due to internal server error products are not be load !!!'}})
+        return res.status(500).json({alert: {type: 'error', title: 'Server Error', dec: 'Due to internal server error products are not be load !!!'}})
     }
 }
+
+export default (req, res) => connectToDb(req, res, callback);

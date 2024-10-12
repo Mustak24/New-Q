@@ -8,7 +8,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="flex w-screen sticky top-0 z-10 backdrop-blur-sm min-h-[80px] items-center justify-between box-border px-10 shadow-[0_1px_10px_rgb(0,0,0,.1)]">
+            <nav className="flex w-screen sticky top-0 z-10 backdrop-blur-sm min-h-[80px] items-center justify-between box-border max-sm:px-4 px-10 shadow-[0_1px_10px_rgb(0,0,0,.1)]">
                 <Link href={"/"} className="flex items-center gap-3">
                     <div className="size-10 rounded-full center overflow-hidden">
                         <Image width={50} height={50} className="w-full h-full object-cover" src={'/logo.jpg'} alt="Internal server come" />

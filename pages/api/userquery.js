@@ -1,13 +1,14 @@
-import connectToDb from "@/Functions/ConnectToDb"
+import connectToDb from "./Middlewares/ConnectToDb"
 import UserQuery from "./Schemas/UserQuery";
 
-export default async function (req, res){
+async function callback (req, res){
     try{
-        let dbRes = await connectToDb();
-        if(!dbRes) return res.json({alert: {type: 'error', title: 'Server Error', dec: 'Due to internal server error products are not be load !!!'}});
-        await UserQuery.create(req.body);
-        res.json({alert:{type: 'success', title: 'Send', dec: 'Your Qurey will be send.'}})
+        await UserQuery.create(req.body)
+        res.status(200).json({alert:{type: 'success', title: 'Send', dec: 'Your Qurey will be send.'}})
     } catch(e){
         res.status(500).json({alert:{type: 'error', title: 'Error', dec: 'Due to Internal server error your Query will not be send !!!'}})
     }
 }
+
+export default (req, res) => connectToDb(req, res, callback);
+

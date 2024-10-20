@@ -4,7 +4,8 @@ import { CardPc01 } from "@/Components/Card"
 import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
 import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
-import getallproducts from "./api/getallproducts";
+import Link from "next/link";
+import { FaPhone } from "react-icons/fa6";
 
 
 export default function Products(props) {
@@ -52,7 +53,7 @@ export default function Products(props) {
             </div>
 
             <div className="w-full center max-sm:flex-col flex-wrap px-10 py-20 gap-10">
-                {isLoading ? <Loading /> : products.map((e, i) => <div key={i}> <ProductCard info={e} /> </div>)}
+                {isLoading ? <Loading /> : products.map((e, i) => <div key={i} className="w-full max-w-[450px]"> <ProductCard info={e} /> </div>)}
             </div>
         </main>
     </>)
@@ -62,24 +63,17 @@ export default function Products(props) {
 
 export function ProductCard(props) {
     const { info } = props;
-    return (<>
-        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,.05)]">
-            <CardPc01 class='max-h-[300px] w-full' innerHTML={
-                <div className="w-full relative overflow-hidden rounded-lg center h-full">
-                    <Image width={300} height={400} className="w-full h-full object-cover" src={info?.img || '/bg-body.jpg'} alt="Intarlan server error" />
-                    <div className="absolute text-sm font-bold font-mono top-1 right-2" style={{ textShadow: '0 0 3px white' }}>{info?.size || ''}</div>
-                </div>
-            } />
-            <div className="flex justify-between w-full ">
-                <h1 className="font-sans font-bold">{info.price}</h1>
-                <div className="center gap-1 text-red-500" style={{ display: !info.available ? 'flex' : 'none' }}>
-                    <span>(</span><h1 className="w-fit text-sm">Out of Stock</h1><span>)</span>
-                </div>
-                <div className="center gap-1 text-green-500" style={{ display: info.available ? 'flex' : 'none' }}>
-                    <span>(</span><h1 className="w-fit text-sm">Available</h1><span>)</span>
-                </div>
+    return (
+        <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,0.1)]">
+            <div className="center relative w-full h-[300px] max-sm:h-[250px] group overflow-hidden">
+                <Image className="w-full h-full object-cover transition-all duration-200 group-hover:brightness-75 group-hover:scale-[1.1]" width={400} height={300} src={info?.img || '/bg-body.jpg'} />
+                <Link href={'/contact'} className="center text-black group-hover:text-white bg-black hover:bg-zinc-800 absolute transition-all duration-300 py-2 px-10 origin-left scale-x-0 group-hover:scale-x-[1] text-center">Contact for Buy</Link>
             </div>
-            <p className="text-sm h-10 font-sans line-clamp-2 w-full px-2 text-pretty">{info.dec}</p>
+            <div className="flex items-center gap-2 px-1 self-start">
+                <FaPhone className="size-[25px]" />
+                <span className="font-semibold font-mono">9413313324</span>
+            </div>
+            <p className="text-sm line-clamp-1 self-start">{info?.dec || ''}</p>
         </div>
-    </>)
+    );
 }

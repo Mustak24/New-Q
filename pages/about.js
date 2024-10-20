@@ -4,7 +4,7 @@ export default function About(props){
     const {alerts, setAlert} = props
     return(<>
         <div className="w-full h-screen center">
-            <Loading title="Working" />
+            <Loading title="On Working" />
         </div>
     </>)
 }

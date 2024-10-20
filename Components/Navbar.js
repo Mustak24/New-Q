@@ -1,10 +1,33 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LinkButtonMobile } from "./Button";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
     const [isNavOpen, setNav] = useState(false);
+    const router = useRouter()
+    const navLoader = useRef()
+
+    useEffect(()=>{
+        router.events.on('routeChangeStart', ()=>{
+            navLoader.current.style.display = 'block'
+            setTimeout(()=>{
+                navLoader.current.style.transition = 'all 8s'
+                navLoader.current.style.width = '80%';
+            },1)
+        })
+        router.events.on('routeChangeComplete', ()=>{
+            setTimeout(() => {
+                navLoader.current.style.transition = 'all .1s'
+                navLoader.current.style.width = '100%';   
+                setTimeout(()=>{
+                    navLoader.current.style.display = 'none'
+                    navLoader.current.style.width = '0%'
+                },100)
+            });
+        })
+    },[])
 
     return (
         <>
@@ -60,6 +83,9 @@ export default function Navbar() {
                         })}
                     </div>
                 </div>
+
+                {/* Loader */}
+                <div ref={navLoader} className="w-0 h-1 bg-red-500 absolute bottom-0 left-0 rounded-full"></div>
             </nav>
         </>
     );

@@ -1,6 +1,5 @@
 import Head from "next/head"
 import Image from "next/image"
-import { CardPc01 } from "@/Components/Card"
 import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
 import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
@@ -37,7 +36,7 @@ export default function Products(props) {
         </Head>
         <main className="flex flex-col items-center w-full text-lg">
             <div className="center load-onetime-child flex-col gap-5 relative w-full px-10 py-20 overflow-hidden text-black text-center" style={{ textShadow: '0 0 10px white' }}>
-                <Image width={1200} height={700} className="w-full absolute h-full object-cover z-[-1]" src={'/products-bg.avif'} />
+                <Image width={1200} height={700} className="w-full absolute h-full object-cover z-[-1]" src={'/products-bg.avif'} priority />
                 <div className="font-serif font-bold text-[2em] leading-10">Transform Your Space with Exquisite Marble</div>
                 <div className="max-w-[1000px] font-mono font-semibold">Elevate your home or business with our premium selection of marble products. From countertops to flooring, we have the perfect marble solutions for you.</div>
                 <div className="center flex-col gap-2">

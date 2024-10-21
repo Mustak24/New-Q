@@ -17,7 +17,11 @@ export default function App({ Component, pageProps }) {
     window.ononline = () => {
       setAlert([...alerts, {type: 'success', title: 'Online', dec: 'Internet connetion is back.'}])
     }
+    
+  }, [])
 
+  useEffect(()=>{
+    fetch(`${window.location.origin}/api/coutVisit?page=${window.location.pathname.slice(1,).toLocaleUpperCase() || 'HOME'}&time=${parseInt(new Date().getTime()/100000)}`)
   })
   
   return (<>

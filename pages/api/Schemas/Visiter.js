@@ -4,7 +4,8 @@ import { Schema } from "mongoose";
 const Visiter = new Schema({
     data: {type: Date, default: new Date},
     page: String,
-    time: Number
+    time: Number,
+    ip: String
 });
 
 mongoose.models = {}

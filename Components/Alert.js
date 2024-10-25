@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react"
 
 export default function Alert(props) {
     const { alerts } = props
-    return (<div className="flex flex-col h-[80%] overflow-y-scroll [&_div]:shrink-0 gap-1 fixed top-[100px] left-2 z-20 cursor-default">
+    return (<div className="flex flex-col h-[80%] overflow-y-scroll [&_div]:shrink-0 gap-1 fixed top-[100px] left-2 z-[1000] cursor-default">
         {(alerts || []).map((alert, i) => <AlertCard key={i} info={alert} />)}
     </div>)
 }

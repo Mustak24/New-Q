@@ -7,6 +7,6 @@ export default async function connectToDb(req, res ,callback){
         await mongoose.connect(url);
         return callback(req, res);
     } catch(e){
-        return res.status(500).json({alert:{type: 'error', title: 'Error', dec: 'Internal server error !!!'}});
+        return res.status(500).json({alert:{type: 'error', title: 'Error', dec: 'Internal server error !!!'}, done: false});
     }
 }

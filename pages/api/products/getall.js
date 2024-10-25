@@ -1,6 +1,6 @@
 
-import connectToDb from "./Middlewares/ConnectToDb";
-import Product from "./Schemas/Product";
+import connectToDb from "../Middlewares/ConnectToDb";
+import Product from "../Schemas/Product";
 
 async function callback(req, res){
     try{

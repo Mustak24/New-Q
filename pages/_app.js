@@ -1,12 +1,35 @@
 import "@/styles/globals.css";
-import Navbar from "@/Components/Navbar";
-import Footer from "@/Components/Footer";
 import Alert from "@/Components/Alert";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
+
 
 export default function App({ Component, pageProps }) {
  
   const [alerts, setAlert] = useState([])
+  const router = useRouter()
+  const Loader = useRef()
+
+  useEffect(()=>{
+    router.events.on('routeChangeStart', ()=>{
+        Loader.current.style.display = 'block'
+        setTimeout(()=>{
+            Loader.current.style.transition = 'all 8s'
+            Loader.current.style.width = '80%';
+        },1)
+    })
+    router.events.on('routeChangeComplete', ()=>{
+        setTimeout(() => {
+            Loader.current.style.transition = 'all .1s'
+            Loader.current.style.width = '100%';   
+            setTimeout(()=>{
+                Loader.current.style.display = 'none'
+                Loader.current.style.width = '0%'
+            },100)
+        });
+    })
+  },[])
+
  
   useEffect(()=>{
 
@@ -19,17 +42,11 @@ export default function App({ Component, pageProps }) {
     }
     
   }, [])
-
-  useEffect(()=>{
-    fetch(`${window.location.origin}/api/coutVisit?page=${window.location.pathname.slice(1,).toLocaleUpperCase() || 'HOME'}&time=${parseInt(new Date().getTime()/100000)}`)
-  })
   
   return (<>
       <div className="scroll-bar"></div>
-      <Navbar />
+      <div ref={Loader} className="w-0 h-1 bg-red-500 fixed top-0 left-0 rounded-full z-[800]"></div>
       <Alert alerts={alerts} />
-      <Component {...pageProps} alerts={alerts} setAlert={setAlert} />
-      <Footer />
-    
+      <Component {...pageProps} alerts={alerts} setAlert={setAlert} />    
   </>)
 }

@@ -97,8 +97,7 @@ export default function Products(props) {
             ) : (
               products.map((e, i) => (
                 <div key={i} className="w-full max-w-[450px]">
-                  {" "}
-                  <ProductCard info={e} />{" "}
+                  <ProductCard info={e} />
                 </div>
               ))
             )}

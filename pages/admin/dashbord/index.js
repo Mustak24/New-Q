@@ -2,13 +2,13 @@ import { RiHome6Line } from "react-icons/ri";
 import { AiOutlineProduct } from "react-icons/ai";
 import { TbMessageUser } from "react-icons/tb";
 import { IoAnalyticsOutline } from "react-icons/io5";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loading from "@/Components/Loading";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchProducts, fetchQuerys } from "@/Function/fetchAll";
+import { ProductImg } from "@/Components/Image";
 
 export default function (props) {
 
@@ -54,8 +54,8 @@ export default function (props) {
           </div>
           <div className="w-full max-w-[500px] h-[300px] backdrop-blur-sm rounded-lg overflow-y-scroll flex justify-center flex-wrap p-2 gap-2 gap-y-2 [&_div]:shrink-0 border-2 border-white">
             {
-              !products.toString() ? <div className="w-full h-full center font-serif text-2xl">{productsLoading ? 'Loading ...' : 'No Products Found'}</div> : products.map((product, index) => <div key={index} className="w-[48%] min-w-[200px] h-[150px] bg-orange-300 overflow-hidden hover:[&_.img]:scale-[1.02] border-zinc-500 border-2 rounded-md">
-                <Image className="w-full h-full object-cover img" width={200} height={150} src={product?.img || '/bg-body.jpg'} alt="404" />
+              !products.toString() ? <div className="w-full h-full center font-serif text-2xl">{productsLoading ? 'Loading ...' : 'No Products Found'}</div> : products.map((product, index) => <div key={index} className="w-[48%] min-w-[200px] h-[150px] bg-zinc-500 overflow-hidden hover:[&_img]:scale-[1.1] border-zinc-500 border-2 rounded-md">
+                <ProductImg id={product._id} width={200} height={150} class='transition-all' />
               </div>)
             }  
           </div>
@@ -73,19 +73,15 @@ export function Asidebar(){
     <aside className="sm:w-fit max-sm:w-full sticky max-sm:h-20 sm:h-screen top-0 left-0 z-20 p-10 flex items-center max-sm:justify-around max-sm:flex-row sm:flex-col gap-10 backdrop-blur-sm sm:border-r-2 max-sm:border-b-2 border-zinc-400">
         <Link href={'/admin/dashbord'} className="flex items-center gap-2 text-zinc-500 hover:text-black transition-all text-md font-[600]">
           <RiHome6Line className="size-6" />
-          {/* <span className="max-md:hidden">Dashbord</span>  */}
         </Link>
         <Link href={'/admin/dashbord/products'} className="flex items-center gap-2 text-zinc-500 hover:text-black transition-all text-md font-[600]">
           <AiOutlineProduct className="size-6" />
-          {/* <span className="max-md:hidden">Products</span> */}
         </Link>
         <Link href={'/admin/dashbord/querys'} className="flex items-center gap-2 text-zinc-500 hover:text-black transition-all text-md font-[600]">
           <TbMessageUser className="size-6" />
-          {/* <span className="max-md:hidden">User-Query</span> */}
         </Link>
         <Link href={'/admin/dashbord/analytics'} className="flex items-center gap-2 text-zinc-500 hover:text-black transition-all text-md font-[600]">
           <IoAnalyticsOutline className="size-6" />
-          {/* <span className="max-md:hidden">Analytics</span> */}
         </Link>
       </aside>
   )

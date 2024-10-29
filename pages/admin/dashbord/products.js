@@ -1,4 +1,3 @@
-import { Textarea } from "@/Components/Input";
 import { Asidebar } from ".";
 import Image from "next/image";
 import { ButtonPc } from "@/Components/Button";
@@ -7,12 +6,14 @@ import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchProducts } from "@/Function/fetchAll";
 import Loading from "@/Components/Loading";
+import { ProductImg } from "@/Components/Image";
 
 export default function (props) {
  
   const router = useRouter();
   const [products, setProducts] = useState([]);
-  const [isloading, setLoading] = useState(true);
+  const [isloading, setLoading] = useState(false);
+  const [isUpdating, setUpadting] = useState(false);
 
   const [productFormId, setProductFormId] = useState('');
   const [productFormDec, setProductFormDec] = useState('');
@@ -21,10 +22,12 @@ export default function (props) {
   const { alerts, setAlert } = props;
 
 
+  const overloadingUpdates = () => setAlert([...alerts, {type: 'info', title: 'Overloading', dec: 'One Products is already in updating proccess'}])
 
   async function updateProduct(e) {
     e.preventDefault();
     setAlert([...alerts, {type: 'info', title: 'Send', dec: 'Request will be submited.'}])
+    setUpadting(true)
     let res = await fetch(`${window.location.origin}/api/products/update`, {
         method: 'POST',
         headers: {'content-type': 'application/json', token: sessionStorage.getItem('token')},
@@ -35,20 +38,33 @@ export default function (props) {
         })
     });
     res = await res.json()
+    if(productFormId) {
+      setProducts((products)=>products.map(product=>{
+        if(product?._id == productFormId){
+          product.img = productFormImg
+        } 
+        return product
+      }));
+    } else {
+      setProducts([...products, res.product])
+    }
+    setUpadting(false)
     if(res?.alert) setAlert((alerts)=>[...alerts, res.alert]);
-    router.reload()
   }
   
   async function deleteProduct(product) {
     if( confirm(`Did you really want to delete this product {id : ${product._id}}`) ) {
+      setUpadting(true)
       let res = await fetch(`${window.location.origin}/api/products/delete?id=${product._id}`, {
         headers: {token: sessionStorage.getItem('token')}
       });
       res = await res.json();
       if (res.remove) {
         setAlert([...alerts, res.alert]);
-        router.reload();
+        let index = products.indexOf(product)
+        setProducts((product)=>[...product.slice(0,index),...product.slice(index+1)])
       }
+      setUpadting(false)
     }
   }
 
@@ -80,7 +96,7 @@ export default function (props) {
       <Asidebar />
       <main className="w-full h-full flex flex-col items-center px-10 max-sm:px-5">
         <form
-          onSubmit={updateProduct}
+          onSubmit={isUpdating ? overloadingUpdates : updateProduct}
           className="w-full max-w-[1000px] center flex-col my-10 gap-5"
         >
           <h1 className="text-2xl font-sans font-bold">Product Form</h1>
@@ -115,11 +131,11 @@ export default function (props) {
               <Image src={productFormImg || '/ProductsDefaultImg.jpg'} width={400} height={250} className="absolute w-full h-full object-cover" alt="404" />
             </label>
           </div>
-          <ButtonPc title="Update Products" />
+          <ButtonPc title={isUpdating ? 'Wait Updating ...' : 'Update Products'} />
         </form>
 
         <div className="flex flex-wrap items-center justify-center w-full h-full gap-5 py-10">
-          {isloading ? <Loading title="Loading" /> :  products.map((product, index) =>  <ProductCard key={index} info={product} deleteProduct={deleteProduct} editProduct={editProduct} /> )}
+          {isloading ? <Loading title="Loading" /> :  products.map((product, index) =>  <ProductCard key={index} info={product} deleteProduct={isUpdating ? overloadingUpdates : deleteProduct} editProduct={isUpdating ? overloadingUpdates : editProduct} /> )}
         </div>
       </main>
     </div>
@@ -131,15 +147,12 @@ function ProductCard(props) {
 
   return (
     <div className="center relative overflow-hidden w-full max-w-[400px] h-[250px] rounded-lg bg-[#18181b] after:border-2 after:border-sky-500 hover:after:h-[90%] after:h-0 after:absolute after:left-2 after:duration-300 after:transition-all after:rounded-full before:size-[1px] before:absolute before:bg-[rgb(225,225,225,.1)] before:rounded-full before:left-1 before:top-1 hover:before:shadow-[0_0_100px_50px_rgb(225,225,255,.3)] before:transition-all duration-[1s] group">
-      <Image
-        className="w-full h-full object-cover group-hover:scale-[1.05] transition-all"
-        width={400}
-        height={250}
-        src={info?.img || "/ProductsDefaultImg.jpg"}
-        alt="404"
-      />
+      <ProductImg id={info._id} class='group-hover:scale-[1.1] transition-all' />
       <div className="w-full h-full bg-[rgb(0,0,0,0.6)] text-white absolute p-5 self-start transition-all group-hover:opacity-[1] opacity-0">
         <div className="font-serif transition-all -translate-x-full group-hover:translate-x-0 opacity-0 group-hover:opacity-100">
+          Date : {(info?.date).split('T')[0]}
+        </div>
+        <div className="font-serif text-sm transition-all -translate-x-full group-hover:translate-x-0 opacity-0 group-hover:opacity-100">
           ID : {info?._id || "1234567890"}
         </div>
         <div className="font-mono text-sm text-pretty transition-all -translate-x-full group-hover:translate-x-0 opacity-0 group-hover:opacity-100">

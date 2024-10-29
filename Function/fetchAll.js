@@ -1,6 +1,6 @@
 export function fetchProducts(){
     return new Promise(async (resolve)=>{
-        let res = await fetch(`${window.location.origin}/api/products/getall`)
+        let res = await fetch(`${window.location.origin}/api/products/getAllProductsInfo`)
         res = await res.json()
         let {products, alert} = res;
         resolve({products, alert})

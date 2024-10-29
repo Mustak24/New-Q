@@ -12,6 +12,21 @@ export default function (props) {
   const [isLoading, setLoading] = useState(true);
   const [querys, setQuerys] = useState([])
 
+  async function deleteQuery(query) {
+    if(confirm(`Did you want to delete the query from ${query.name} and ID is ${query._id}`)){
+      let res = await fetch(`${window.location.origin}/api/querys/delete?id=${query._id}`, {
+        headers: {token: sessionStorage.getItem('token')}
+      })
+      res = await res.json()
+      if(res?.alert) setAlert([...alerts, res.alert]);
+      if (res.remove) {
+        setAlert([...alerts, res.alert]);
+        let index = querys.indexOf(query)
+        setQuerys((querys)=>[...querys.slice(0,index),...querys.slice(index+1)])
+      }
+    }
+  }
+
   useEffect(()=>{
     
     verifyAdminToken().then(res => {
@@ -33,7 +48,7 @@ export default function (props) {
         <h1 className="text-black text-2xl font-serif my-5">User Masseges : </h1>
         <div className="flex flex-wrap justify-center gap-5 w-full h-fit relative">
           {
-            isLoading ? <Loading title='Loading' /> : querys.map((query, index) => <QueryCard key={index} info={query} alerts={alerts} setAlert={setAlert} /> )
+            isLoading ? <Loading title='Loading' /> : querys.map((query, index) => <QueryCard key={index} info={query} deleteQuery={deleteQuery} /> )
           }
         </div>
       </main>
@@ -42,19 +57,8 @@ export default function (props) {
 }
 
 function QueryCard(props) {
-  const {alerts, setAlert, info} = props
-  const router = useRouter()
   
-  async function deleteQuery(query) {
-    if(confirm(`Did you want to delete the query from ${query.name} and ID is ${query._id}`)){
-      let res = await fetch(`${window.location.origin}/api/querys/delete?id=${query._id}`, {
-        headers: {token: sessionStorage.getItem('token')}
-      })
-      res = await res.json()
-      if(res?.alert) setAlert([...alerts, res.alert]);
-      if(res?.remove) router.reload()
-    }
-  }
+  const {info, deleteQuery} = props
   
   return (
     <div className="w-[300px] h-[180px] relative">

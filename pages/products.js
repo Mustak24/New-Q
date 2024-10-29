@@ -7,32 +7,22 @@ import Link from "next/link";
 import { FaPhone } from "react-icons/fa6";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import { ProductImg } from "@/Components/Image";
+import { fetchProducts } from "@/Function/fetchAll";
 
 export default function Products(props) {
   const { alerts, setAlert } = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
-  async function gellAllProducts() {
-    setLoading(true);
-    if (!window.navigator.onLine)
-      return setAlert([
-        ...alerts,
-        {
-          type: "error",
-          title: "No Internet",
-          dec: "Products are not be load due to no Internet connnection.",
-        },
-      ]);
-    let res = await fetch(`${window.location.origin}/api/products/getall`);
-    res = await res.json();
-    setLoading(false);
-    setProducts(res?.products || []);
-    if (res.alert) setAlert([...alerts, res.alert]);
-  }
 
   useEffect(() => {
-    gellAllProducts();
+    setLoading(true);
+    fetchProducts().then((res) => {
+      setLoading(false);
+      setProducts(res?.products || []);
+      if (res?.alert) setAlert([...alerts, res.alert]);
+    });
 
     window.ononline = () => {
       if (!products.toString()) return getallproducts();
@@ -114,13 +104,7 @@ export function ProductCard(props) {
   return (
     <div className="flex flex-col gap-3 items-center w-full max-w-[450px] p-5 bg-[rgb(0,0,0,0.1)]">
       <div className="center relative w-full h-[300px] max-sm:h-[250px] group overflow-hidden">
-        <Image
-          className="w-full h-full object-cover transition-all duration-200 group-hover:brightness-75 group-hover:scale-[1.1]"
-          width={400}
-          height={300}
-          src={info?.img || "/ProductsDefaultImg.jpg"}
-          alt="404"
-        />
+        <ProductImg id={info._id} width={400} height={300} class='transition-all duration-200 group-hover:brightness-75 group-hover:scale-[1.1]' />
         <Link
           href={"/contact"}
           className="center text-black group-hover:text-white bg-black hover:bg-zinc-800 absolute transition-all duration-300 py-2 px-10 origin-left scale-x-0 group-hover:scale-x-[1] text-center"

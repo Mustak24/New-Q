@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { LinkButtonMobile } from "./Button";
 import Image from "next/image";
 

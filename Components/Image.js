@@ -64,7 +64,7 @@ export function ProductImg(props) {
     setLoading(true)
     fetch(`${window.location.origin}/api/products/getProductImg?id=${props.id}`).then(res=>res.text()).then(res=>{
       setImg(res)
-      setLoading(true);
+      setLoading(false);
     })
   }, [])
 

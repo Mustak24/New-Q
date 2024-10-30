@@ -54,7 +54,7 @@ export default function (props) {
           </div>
           <div className="w-full max-w-[500px] h-[300px] backdrop-blur-sm rounded-lg overflow-y-scroll flex justify-center flex-wrap p-2 gap-2 gap-y-2 [&_div]:shrink-0 border-2 border-white">
             {
-              !products.toString() ? <div className="w-full h-full center font-serif text-2xl">{productsLoading ? 'Loading ...' : 'No Products Found'}</div> : products.map((product, index) => <div key={index} className="w-[48%] min-w-[200px] h-[150px] bg-zinc-500 overflow-hidden hover:[&_img]:scale-[1.1] border-zinc-500 border-2 rounded-md">
+              !products.toString() ? <div className="w-full h-full center font-serif text-2xl">{productsLoading ? 'Loading ...' : 'No Products Found'}</div> : products.map((product, index) => <div key={index} className="center relative w-[48%] min-w-[200px] h-[150px] bg-zinc-500 overflow-hidden hover:[&_img]:scale-[1.1] border-zinc-500 border-2 rounded-md">
                 <ProductImg id={product._id} width={200} height={150} class='transition-all' />
               </div>)
             }  

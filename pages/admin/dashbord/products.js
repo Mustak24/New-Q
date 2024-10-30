@@ -1,11 +1,11 @@
 import { Asidebar } from ".";
 import Image from "next/image";
-import { ButtonPc } from "@/Components/Button";
+import { ButtonPc, RoundButton } from "@/Components/Button";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchProducts } from "@/Function/fetchAll";
-import Loading from "@/Components/Loading";
+import Loading, { SpinLoader } from "@/Components/Loading";
 import { ProductImg } from "@/Components/Image";
 
 export default function (props) {
@@ -131,7 +131,17 @@ export default function (props) {
               <Image src={productFormImg || '/ProductsDefaultImg.jpg'} width={400} height={250} className="absolute w-full h-full object-cover" alt="404" />
             </label>
           </div>
-          <ButtonPc title={isUpdating ? 'Wait Updating ...' : 'Update Products'} />
+          <ButtonPc 
+            title={
+              isUpdating ? 
+              (
+                <div className="center gap-2">
+                  <SpinLoader theme='black-white' size='sm' />
+                  Product Updating ...
+                </div>
+              ) : ('Update Products')
+              } 
+          />
         </form>
 
         <div className="flex flex-wrap items-center justify-center w-full h-full gap-5 py-10">
@@ -160,18 +170,8 @@ function ProductCard(props) {
         </div>
       </div>
       <div className="absolute right-3 bottom-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <button
-          className="relative translate-y-[200%] group-hover:translate-y-0 text-[9px] font-bold font-sans cursor-pointer text-blue-500 z-[1] transition-all duration-500 hover:text-white center size-10 overflow-hidden rounded-full border-2 border-blue-500 after:contact-[''] after:z-[-1] after:absolute after:size-10 after:bg-blue-500 after:top-[-80%] after:rounded-[40%] hover:after:top-[20%] after:duration-500 after:transition-all hover:shadow-[0_0_20px_2px_rgb(14,165,233)]"
-          onClick={() => editProduct(info)}
-        >
-          Edit
-        </button>
-        <button
-          className="relative translate-y-[100%] group-hover:translate-y-0 text-[9px] font-bold font-sans cursor-pointer text-red-500 z-[1] transition-all duration-500 hover:text-white center size-10 overflow-hidden rounded-full border-2 border-red-500 after:contact-[''] after:z-[-1] after:absolute after:size-10 after:bg-red-500 after:top-[-80%] after:rounded-[40%] hover:after:top-[20%] after:duration-500 after:transition-all hover:shadow-[0_0_20px_2px_crimson]"
-          onClick={() => deleteProduct(info)}
-        >
-          Delete
-        </button>
+        <RoundButton type='edit' onClick={()=>editProduct(info)} />
+        <RoundButton type='delete' onClick={()=>deleteProduct(info)} />
       </div>
     </div>
   );

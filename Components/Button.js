@@ -108,3 +108,26 @@ export function ButtonPc_01(props) {
         </button>
     </>)
 }
+
+export function RoundButton(props) {
+    
+    const types = {
+        delete: {
+            tailwindClasses: ['text-red-500', 'border-red-500', 'after:bg-red-500', 'hover:shadow-[0_0_20px_2px_crimson]'],
+            innerHTML: 'Delete'
+        },
+        edit: {
+            tailwindClasses: ['text-blue-500', 'border-blue-500', 'after:bg-blue-500', 'hover:shadow-[0_0_20px_2px_rgb(14,165,233)]'],
+            innerHTML: 'Edit'
+        }
+    }
+
+    return (
+        <button
+            className={`relative translate-y-[200%] group-hover:translate-y-0 text-[9px] font-bold font-sans cursor-pointer z-[1] transition-all duration-500 hover:text-white center size-10 overflow-hidden rounded-full border-2 after:contact-[''] after:z-[-1] after:absolute after:size-10 after:top-[-80%] after:rounded-[40%] hover:after:top-[20%] after:duration-500 after:transition-all ${(types[props.type].tailwindClasses).join(' ')}`}
+            onClick={props?.onClick || null}
+        >
+            {props.innerHTML || types[props.type].innerHTML}
+        </button>
+    )
+}

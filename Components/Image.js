@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { SpinLoader } from "./Loading"
 
 
 export function ImageSliderLeft(props) {
@@ -63,12 +64,12 @@ export function ProductImg(props) {
     setLoading(true)
     fetch(`${window.location.origin}/api/products/getProductImg?id=${props.id}`).then(res=>res.text()).then(res=>{
       setImg(res)
-      setLoading(false);
+      setLoading(true);
     })
   }, [])
 
   return (<>
-    {isLoading ? <div className="w-full h-full center font-serif text-2xl text-white text-blink">Loading ...</div> : <Image
+    {isLoading ? <SpinLoader theme='lightblue-blue' size='lg' /> : <Image
       className={`w-full h-full object-cover ${props.class}`}
       width={props?.width || 400}
       height={props?.height || 250}

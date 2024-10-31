@@ -3,7 +3,7 @@ import { Asidebar } from ".";
 import { useRouter } from "next/router";
 import Loading from "@/Components/Loading";
 import verifyAdminToken from "@/Function/verifyAdminToken";
-import { fetchQuerys } from "@/Function/fetchAll";
+import { fetchQuerys } from "@/Function/fetch";
 
 export default function (props) {
 

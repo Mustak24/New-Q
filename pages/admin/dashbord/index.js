@@ -7,7 +7,7 @@ import Loading from "@/Components/Loading";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
-import { fetchProducts, fetchQuerys } from "@/Function/fetchAll";
+import { fetchProducts, fetchQuerys } from "@/Function/fetch";
 import { ProductImg } from "@/Components/Image";
 
 export default function (props) {

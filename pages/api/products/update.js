@@ -8,10 +8,10 @@ async function callback(req, res) {
         let {id, dec, img} = req.body;
         if(id){
             await Product.findByIdAndUpdate(id, {dec, img});
-            return res.json({alert:{type: 'info', title: 'Product Update', dec: 'Product will be Update in Database.'}, done: true});
+            return res.json({alert:{type: 'info', title: 'Product Update', dec: 'Product will be Update in Database.'}, done: true, img});
         } else {
             let product = await Product.create({dec, img});
-            return res.json({alert:{type: 'info', title: 'Product Add', dec: 'Product will be create in Database.'}, done: true, product});
+            return res.json({alert:{type: 'info', title: 'Product Add', dec: 'Product will be create in Database.'}, done: true, img, product});
         }
     } catch(e){
         console.log(e)

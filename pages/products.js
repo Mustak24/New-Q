@@ -8,7 +8,7 @@ import { FaPhone } from "react-icons/fa6";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import { ProductImg } from "@/Components/Image";
-import { fetchProducts } from "@/Function/fetchAll";
+import { fetchProducts } from "@/Function/fetch";
 
 export default function Products(props) {
   const { alerts, setAlert } = props;

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { SpinLoader } from "./Loading"
+import { fetchproductImg } from "@/Function/fetch"
 
 
 export function ImageSliderLeft(props) {
@@ -61,16 +62,12 @@ export function ProductImg(props) {
   const [isLoading, setLoading] = useState(false)
 
   useEffect(()=>{ 
-    setLoading(true)
-    fetch(`${window.location.origin}/api/products/getProductImg?id=${props.id}`).then(res=>res.text()).then(res=>{
-      setImg(res)
-      setLoading(false);
-    })
+    fetchproductImg({id: props.id, setLoading, setImg})
   }, [])
 
   return (<>
-    {isLoading ? <SpinLoader theme='lightblue-blue' size='lg' /> : <Image
-      className={`w-full h-full object-cover ${props.class}`}
+    {isLoading ? <SpinLoader theme='lightblue-blue' size='lg' tailwindClass={props.tailwindClass} /> : <Image
+      className={`w-full h-full object-cover transition-all ${props.tailwindClass}`}
       width={props?.width || 400}
       height={props?.height || 250}
       src={img || '/ProductsDefaultImg.jpg'}

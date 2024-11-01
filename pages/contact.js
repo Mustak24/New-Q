@@ -142,7 +142,7 @@ export default function Contact(props) {
             </span>
             <form
               onSubmit={QueryFormSubmit}
-              className="flex-col load-onetime-self center min-w-fit w-full max-w-[1000px] min-h-fit box-border gap-2"
+              className="flex-col load-onetime-self center w-full max-w-[1000px] min-h-fit box-border gap-2"
             >
               <Input
                 name="name"

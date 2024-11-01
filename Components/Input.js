@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 
@@ -7,12 +7,12 @@ import { IoMdEyeOff } from "react-icons/io";
 
 export function Textarea(props) {
     return (<>
-        <div className="border-2 has-[.textarea:invalid:not(:placeholder-shown)]:border-red-500 has-[.textarea:valid:not(:placeholder-shown)]:border-green-500 border-black relative rounded-[20px] has-[.textarea:focus]:border-sky-500 overflow-hidden min-w-[200px] w-full min-h-[80px] h-full px-[15px]">
+        <div className="border-2 has-[.textarea:invalid:not(:placeholder-shown)]:border-red-500 has-[.textarea:valid:not(:placeholder-shown)]:border-green-500 border-black relative rounded-[20px] has-[.textarea:focus]:border-sky-500 overflow-hidden min-w-[200px] w-full min-h-[80px] h-full px-[15px] center">
             <textarea
                 name={props.name}
                 placeholder={props.placeholder}
                 required={props?.required || false}
-                className="textarea bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm flex items-center pt-[10px] w-full h-full outline-none resize-none"
+                className="textarea bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm w-full h-full outline-none resize-none"
                 style={{ scrollbarWidth: "none" }}
             ></textarea>
         </div>
@@ -27,6 +27,11 @@ export function Input(props) {
     const id = props.id || props.name || String(parseInt(Math.random()*100))
     
     const animationDir = (dir='top') => dir ? `animate-text-comefrom-${dir}` : '';
+
+    useEffect(() => {
+        let inputBox = document.querySelector(`div#inputBox${id}`)
+        inputBox.scroll({left: inputBox.scrollWidth})
+    }, [inputValue])
 
     return (
         <>
@@ -65,7 +70,7 @@ export function Input(props) {
                     id={id}
                     placeholder={props.placeholder}
                     minLength={props.minLength}
-                    className="input absolute scale-0 opacity-0"
+                    className="input absolute scale-0 opacity-0 w-full h-full font-semibold"
                     onChange={(e) => setInputValue(e.target.value)}
                     onFocus={(e) => {
                         let inputBoxLine = e.target.nextElementSibling;
@@ -80,7 +85,7 @@ export function Input(props) {
                         return inputBoxLine.classList.add('after:border-[0px]')
                     }}
                 />
-                <div className={`w-fit h-full py-[5px] gap-[2px] relative font-semibold text-sm flex items-center after:mx-1 after:border-black after:animate-[h-full_.6s_infinite_alternate] after:border-[0px]`}>
+                <div id={`inputBox${id}`} className={`w-full h-full py-[5px] gap-[2px] relative font-semibold text-sm flex items-center after:mx-1 after:border-black after:animate-[h-full_.6s_infinite_alternate] after:border-[0px] overflow-x-scroll`}>
                     {
                         !inputValue ? (
                             <span className="text-nowrap absolute text-gray-700 font-medium pl-1 select-none">{props.placeholder}</span>
@@ -100,8 +105,14 @@ export function PasswordInput(props) {
 
     const [inputValue, setInputValue] = useState('')
     const [isPasswordShow, setPasswordShow] = useState(false);
+    const id = props.id || props.name || String(parseInt(Math.random()*100))
     
     const animationDir = (dir='top') => dir ? `animate-text-comefrom-${dir}` : '';
+   
+    useEffect(() => {
+        let inputBox = document.querySelector(`div#inputBox${id}`)
+        inputBox.scroll({left: inputBox.scrollWidth})
+    }, [inputValue])
 
     return (
         <>
@@ -133,11 +144,11 @@ export function PasswordInput(props) {
                   100%{height: 100%; opacity: 1;}
                 }
             `}</style>
-            <label htmlFor={props.id} className={`flex items-center border-2 relative rounded-full overflow-hidden min-w-[200px] w-full h-[40px] px-[15px] transition-all cursor-text has-[.input:invalid:not(:placeholder-shown)]:border-red-500 has-[.input:valid:not(:placeholder-shown)]:border-green-500 has-[.input:focus]:border-sky-500 border-black`}>
+            <label htmlFor={id} className={`flex items-center border-2 relative rounded-full overflow-hidden min-w-[200px] w-full h-[40px] pl-[15px] pr-10 transition-all cursor-text has-[.input:invalid:not(:placeholder-shown)]:border-red-500 has-[.input:valid:not(:placeholder-shown)]:border-green-500 has-[.input:focus]:border-sky-500 border-black`}>
                 <input
                     type="password"
                     name={props.name}
-                    id={props.id}
+                    id={id}
                     placeholder={props.placeholder}
                     minLength={props.minLength}
                     required={!!(props.required)}
@@ -156,7 +167,7 @@ export function PasswordInput(props) {
                         return inputBoxLine.classList.add('after:border-[0px]')
                     }}
                 />
-                <div className={`w-fit h-full py-[5px] gap-[2px] relative font-semibold text-sm flex items-center after:mx-1 after:border-black after:animate-[h-full_.6s_infinite_alternate] after:border-[0px]`}>
+                <div id={`inputBox${id}`} className={`w-full h-full py-[5px] gap-[2px] relative font-semibold text-sm flex items-center after:mx-1 after:border-black after:animate-[h-full_.6s_infinite_alternate] after:border-[0px] overflow-x-scroll`}>
                     {
                         !inputValue ? (
                             <span className="text-nowrap absolute text-gray-700 font-medium pl-1">{props.placeholder}</span>

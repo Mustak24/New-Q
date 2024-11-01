@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
 const Visiter = new Schema({
@@ -8,5 +8,4 @@ const Visiter = new Schema({
     ip: String
 });
 
-mongoose.models = {}
-export default mongoose.model('Visiter', Visiter)
+export default mongoose.models.Visiter || mongoose.model('Visiter', Visiter)

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { Input, PasswordInput } from "@/Components/Input"
+import { ClassicInput } from "@/Components/Input"
 import { ButtonPc, ButtonMobile } from "@/Components/Button"
 import { useEffect } from "react";
 import verifyAdminToken from "@/Function/verifyAdminToken";
@@ -53,8 +53,8 @@ export default function (props) {
         <div className="w-screen h-screen center px-10">
             <form onSubmit={Login} className="flex-col load-onetime-self center w-full max-w-[1000px] min-h-fit box-border gap-2">
                 <h1 className="font-serif text-2xl font-semibold">Login for Dashbord</h1>
-                <Input name='email' placeholder='Enter your Email' type='email' required={true} />
-                <PasswordInput name='password' placeholder='Enter your Password' required={true} minLength={8} />
+                <ClassicInput name='email' placeholder='Enter your Email' type='email' required={true} />
+                <ClassicInput name='password' placeholder='Enter your Password' type='password' required={true} minLength={8} />
                 <div className="w-full">
                     <ButtonPc title='Send' class='max-md:hidden' />
                     <ButtonMobile title='Send' class='md:hidden' scale='200' />

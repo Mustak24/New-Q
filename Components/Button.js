@@ -1,113 +1,31 @@
-import Link from 'next/link'
 
-export function LinkButtonMobile(props) {
-    return (<>
-        <Link href={props?.url || ''}>
-            <span
-                className={`${props.class} relative bg-white z-[1] w-fit font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-w-full h-fit min-h-10 z-1 rounded-full center flex-col text-center after:border-black before:border-black active:text-white text-black transition-all duration-500 active:after:content-[''] after:border-2 active:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] active:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-                style={{'--s': props?.scale || 70}}
-            >
-                {props?.title || 'Click'}
-            </span>
-        </Link>
-    </>)
-}
+import { SpinLoader } from './Loading'
 
-export function ButtonMobile(props) {
-    return (<>
-        <button
-            className={`${props.class} relative bg-white z-[1] w-fit font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-w-full h-fit min-h-10 z-1 rounded-full center flex-col text-center after:border-black before:border-black active:text-white text-black transition-all duration-500 active:after:content-[''] after:border-2 active:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] active:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-            style={{'--s': props?.scale || 70}}
+
+export default function Button(props) {
+    
+    const genBtnTailwindcss = (bgColor, textColor) => [`bg-${bgColor}`, `after:border-${textColor}`, `before:border-${textColor}`, `active:txt-${bgColor}`, `text-${textColor}`, `hover:text-${bgColor}`].join(' ')
+    
+    let {isLoading, theme, loadingInnerHTML} = props
+
+    return (
+        <button 
+            className={`relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 h-fit min-h-10 z-1 rounded-full center flex-col text-center transition-all duration-500 active:after:content-[''] after:border-2 active:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] active:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all max-sm:hover:before:scale-[150] max-sm:hover:after:scale-[150] max-md:hover:before:scale-[200] max-md:hover:after:scale-[200] max-lg:hover:before:scale-[400] max-lg:hover:after:scale-[400] hover:before:scale-[800] hover:after:scale-[800] ${genBtnTailwindcss(theme?.bg || 'white', theme?.text || 'black')} ${props.tailwindcss}`}
             onClick={props?.onClick || function(){}}
         >
-            {props?.title || 'Click'}
+            {
+                isLoading ?
+                  (
+                    <div className="center gap-2">
+                      <SpinLoader  size='sm' theme='black-white' />
+                      {loadingInnerHTML || 'Wait ...'}
+                    </div>
+                  ) : (props.innerHTML)
+            }
         </button>
-    </>)
+    )
 }
 
-
-
-
-export function LinkButtonMobile_01(props) {
-    return (<>
-        <Link href={props.url}>
-            <span
-                className={`${props.class} relative bg-white z-[1] font-bold w-fit overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-w-full h-fit min-h-10 z-1 rounded-full center text-center flex-col after:border-red-500 before:border-red-500 active:text-white text-red-500 transition-all duration-500 active:after:content-[''] after:border-2 active:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] active:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-                style={{'--s': props?.scale || 70}}
-            >
-                {props?.title || 'Click'}
-            </span>
-        </Link>
-    </>)
-}
-
-export function ButtonMobile_01(props) {
-    return (<>
-        <button
-            className={`${props.class} relative bg-white z-[1] font-bold w-fit overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-w-full h-fit min-h-10 z-1 rounded-full center text-center flex-col after:border-red-500 before:border-red-500 active:text-white text-red-500 transition-all duration-500 active:after:content-[''] after:border-2 active:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] active:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-            style={{'--s': props?.scale || 70}}
-            onClick={props?.onClick || function(){}}
-        >
-            {props?.title || 'Click'}
-        </button>
-    </>)
-}
-
-
-
-
-export function LinkButtonPc(props) {
-    return (<>
-        <Link href={props?.url || ''}>
-            <span
-                className={`${props.class} relative w-fit bg-white z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] min-w-full px-5 h-fit min-h-10 z-1 text-center rounded-full center flex-col after:border-black before:border-black hover:text-white text-black transition-all duration-500 hover:after:content-[''] after:border-2 hover:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] hover:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-                style={{'--s': props?.scale || 300}}
-            >
-                {props?.title || 'Click'}
-            </span>
-        </Link>
-    </>)
-}
-
-export function ButtonPc(props) {
-    return (<>
-        <button
-            className={`${props.class} relative w-fit bg-white z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] min-w-full px-5 h-fit min-h-10 z-1 text-center rounded-full center flex-col after:border-black before:border-black hover:text-white text-black transition-all duration-500 hover:after:content-[''] after:border-2 hover:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] hover:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-            style={{'--s': props?.scale || 300}}
-            onClick={props?.onClick || function(){}}
-        >
-            {props?.title || 'Click'}
-        </button>
-    </>)
-}
-
-
-
-
-export function LinkButtonPc_01(props) {
-    return (<>
-        <Link href={props?.url || ''}>
-            <span
-                className={`${props.class} relative w-fit bg-white z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] min-w-full px-5 h-fit min-h-10 z-1 rounded-full center text-center flex-col after:border-red-500 before:border-red-500 hover:text-white text-red-500 transition-all duration-500 hover:after:content-[''] after:border-2 hover:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] hover:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-                style={{'--s': props?.scale || 300}}
-            >
-                {props?.title || 'Click'}
-            </span>
-        </Link>
-    </>)
-}
-
-export function ButtonPc_01(props) {
-    return (<>
-        <button
-            className={`${props.class} relative w-fit bg-white z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] min-w-full px-5 h-fit min-h-10 z-1 rounded-full center text-center flex-col after:border-red-500 before:border-red-500 hover:text-white text-red-500 transition-all duration-500 hover:after:content-[''] after:border-2 hover:after:scale-[var(--s)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] hover:before:scale-[var(--s)] before:border-2 before:rounded-full before:transition-all after:transition-all`}
-            style={{'--s': props?.scale || 300}}
-            onClick={props?.onClick || function(){}}
-        >
-            {props?.title || 'Click'}
-        </button>
-    </>)
-}
 
 export function RoundButton(props) {
     

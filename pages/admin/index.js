@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { ClassicInput } from "@/Components/Input"
-import { ButtonPc, ButtonMobile } from "@/Components/Button"
+import Button from "@/Components/Button"
 import { useEffect } from "react";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 
@@ -56,8 +56,7 @@ export default function (props) {
                 <ClassicInput name='email' placeholder='Enter your Email' type='email' required={true} />
                 <ClassicInput name='password' placeholder='Enter your Password' type='password' required={true} minLength={8} />
                 <div className="w-full">
-                    <ButtonPc title='Send' class='max-md:hidden' />
-                    <ButtonMobile title='Send' class='md:hidden' scale='200' />
+                    <Button innerHTML='Send' tailwindcss='w-full' />
                 </div>
             </form>
         </div>

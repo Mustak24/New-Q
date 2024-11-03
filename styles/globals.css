@@ -44,17 +44,6 @@ footer, .load-animation-opacity{
 
 .text-blink{animation: text-blink-animation 1.5s infinite linear alternate;}
 
-.scroll-bar{
-  position: fixed;
-  width: 10px; height: 0px;
-  background-color: crimson;
-  left: 0px; bottom: 0px;
-  animation: scrollbar-animation linear;
-  animation-timeline: scroll();
-  z-index: 1000;
-  border-radius: 2px;
-}
-
 
 @keyframes slideLeft{
   0%{transform: translateX(-20vmax);}

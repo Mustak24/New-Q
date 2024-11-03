@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { LinkButtonMobile, LinkButtonPc } from "@/Components/Button";
+import {  LinkBtn } from "@/Components/Link";
 import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -65,17 +65,9 @@ export default function Products(props) {
                 <div className="my-2">And</div>
               </div>
               <div className="[text-shadow:_none]">
-                <LinkButtonPc
-                  class="max-lg:hidden"
-                  title="Contact Us"
+                <LinkBtn
+                  innerHTML="Contact Us"
                   url="/contact"
-                  scale="40"
-                />
-                <LinkButtonMobile
-                  class="lg:hidden"
-                  title="Contact Us"
-                  url="/contact"
-                  scale="40"
                 />
               </div>
             </div>

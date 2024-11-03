@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 export default function App({ Component, pageProps }) {
  
   const [alerts, setAlert] = useState([])
+  const [scrollbarHeight, setScrollbarHeight] = useState(0)
   const router = useRouter()
   const Loader = useRef()
 
@@ -42,9 +43,17 @@ export default function App({ Component, pageProps }) {
     }
     
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', (e) => {
+      let totalHeight = document.body.scrollHeight - window.innerHeight;
+      let scroll = window.scrollY;
+      setScrollbarHeight(scroll/totalHeight)
+    })
+  }, [])
   
   return (<>
-      <div className="scroll-bar"></div>
+      <div className="w-[10px] bg-red-500 fixed left-0 bottom-0 rounded-sm z-[1000]" style={{height: `${scrollbarHeight*100}%`}}></div> 
       <div ref={Loader} className="w-0 h-1 bg-red-500 fixed top-0 left-0 rounded-full z-[800]"></div>
       <Alert alerts={alerts} />
       <Component {...pageProps} alerts={alerts} setAlert={setAlert} />    

@@ -1,6 +1,6 @@
 import { Asidebar } from ".";
 import Image from "next/image";
-import { ButtonPc, RoundButton } from "@/Components/Button";
+import Button, { RoundButton } from "@/Components/Button";
 import { useEffect, useState, useContext, createContext } from "react";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
@@ -131,17 +131,7 @@ export default function (props) {
                 )}
               </label>
             </div>
-            <ButtonPc
-              title={
-                isUpdating ?
-                  (
-                    <div className="center gap-2">
-                      <SpinLoader theme='black-white' size='sm' />
-                      Product Updating ...
-                    </div>
-                  ) : ('Update Products')
-              }
-            />
+            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' tailwindcss='w-full' />
           </form>
 
           <div className="flex flex-wrap items-center justify-center w-full h-full gap-5 py-10">

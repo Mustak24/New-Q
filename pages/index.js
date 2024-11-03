@@ -1,10 +1,5 @@
-import {
-  LinkButtonPc,
-  LinkButtonPc_01,
-  LinkButtonMobile,
-  LinkButtonMobile_01,
-} from "@/Components/Button";
-import { ProfileCardPc01 } from "@/Components/Card";
+
+import { LinkBtn } from "@/Components/Link";
 import { ImageSliderRight, ImageSliderLeft } from "@/Components/Image";
 import Head from "next/head";
 import Image from "next/image";
@@ -53,35 +48,8 @@ export default function Index() {
               </div>
             </div>
             <div className="center gap-3 flex-wrap">
-              {/* PC version Buttons */}
-              <div className="center max-sm:hidden">
-                {" "}
-                <LinkButtonPc
-                  url="/about"
-                  title="Explore About Us"
-                  scale="60"
-                />{" "}
-              </div>
-              <div className="center max-sm:hidden">
-                {" "}
-                <LinkButtonPc_01
-                  url="/contact"
-                  title="Get in Touch"
-                  bg="back2"
-                  text="text2"
-                  scale="60"
-                />{" "}
-              </div>
-
-              {/* Mobile version Buttons */}
-              <div className="center sm:hidden">
-                {" "}
-                <LinkButtonMobile url="/about" title="Explore About Us" />{" "}
-              </div>
-              <div className="center sm:hidden">
-                {" "}
-                <LinkButtonMobile_01 url="/contact" title="Get in Touch" />{" "}
-              </div>
+                <LinkBtn url="/about" innerHTML="Explore About Us" />
+                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} />
             </div>
           </div>
 
@@ -123,23 +91,9 @@ export default function Index() {
                 cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
                 commodo diam libero vitae erat.
               </p>
-              <div className="max-sm:hidden self-start">
-                {" "}
-                <LinkButtonPc_01
-                  title="Explore Our Products"
-                  url="/products"
-                  scale="60"
-                />{" "}
-              </div>
-              <div className="sm:hidden self-start">
-                {" "}
-                <LinkButtonMobile_01
-                  title="Explore Our Products"
-                  url="/products"
-                />{" "}
-              </div>
-            </div>
 
+                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} />
+            </div>
             {/* Stiky Cards */}
             <div className="md:w-1/2 center flex-col gap-10">
               <div className="center bg-white sticky top-[100px] flex-col w-full shadow-md rounded-lg rotate-1">
@@ -211,16 +165,16 @@ export default function Index() {
             <div className="center flex-col gap-10">
               <div className="center load-child-sm flex-wrap w-full gap-10">
                 <div className="w-[300px] h-[200px] relative">
-                  <ProfileCardPc01 name="Name" role="Role / Position" />
+                  {/* <ProfileCardPc01 name="Name" role="Role / Position" /> */}
                 </div>
                 <div className="w-[300px] h-[200px] relative">
-                  <ProfileCardPc01 name="Name2" role="Role / Position" />
+                  {/* <ProfileCardPc01 name="Name2" role="Role / Position" /> */}
                 </div>
                 <div className="w-[300px] h-[200px] relative">
-                  <ProfileCardPc01 name="Name" role="Role / Position" />
+                  {/* <ProfileCardPc01 name="Name" role="Role / Position" /> */}
                 </div>
                 <div className="w-[300px] h-[200px] relative">
-                  <ProfileCardPc01 name="Name2" role="Role / Position" />
+                  {/* <ProfileCardPc01 name="Name2" role="Role / Position" /> */}
                 </div>
               </div>
             </div>
@@ -230,4 +184,22 @@ export default function Index() {
       </div>
     </>
   );
+}
+
+
+export function ProfileCardPc01(props) {
+  return (<>
+      <div className="w-full z-4 relative h-full flex flex-col p-5 gap-5 after:content-[''] after:absolute after:w-full after:h-full after:bg-orange-100 after:inset-[50%_0_0_50%] after:rounded-lg after:translate-x-[-50%] after:translate-y-[-50%] after:z-[-1] before:content-[''] before:absolute before:w-full before:rounded-lg before:h-full before:bg-orange-300 before:z-[-1] before:translate-x-[-50%] before:translate-y-[-50%] before:inset-[50%_0_0_50%] hover:after:rotate-[2deg] hover:rotate-[2deg] hover:before:rotate-[-4deg] transition-all after:transition-all before:transition-all duration-200 after:duration-200 before:duration-200">
+          <div className="flex gap-5">
+              <div className="size-[55px] bg-black relative rounded-full overflow-hidden">
+                  <Image width={40} height={40} className="w-full h-full object-cover" src={props?.profileImg || '/profileDefaultImg.webp'} alt="Internal server come" />
+              </div>
+              <div className="flex flex-col text-md">
+                  <div className="font-semibold">{props.name}</div>
+                  <div className="opacity-[.7]">{props.role}</div>
+              </div>
+          </div>
+          <p className="text-pretty text-[.95em] font-sans line-clamp-3">{props.dic}</p>
+      </div>
+  </>)
 }

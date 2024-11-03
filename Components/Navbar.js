@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { LinkButtonMobile } from "./Button";
+import { LinkBtn, LinkDobbleUnderline } from "./Link";
 import Image from "next/image";
 
 const navigation = {
@@ -10,7 +10,7 @@ const navigation = {
     { name: "Contact", url: "/contact" },
     { name: "Products", url: "/products" },
   ],
-};
+}
 
 export default function Navbar(props) {
   const [isNavOpen, setNav] = useState(false);
@@ -37,17 +37,8 @@ export default function Navbar(props) {
 
         {/* For pc nav menu */}
         <div className="max-md:hidden flex gap-5 items-center">
-          {navigation[navigationType].map((e, i) => {
-            return (
-              <div key={i}>
-                <Link href={e.url}>
-                  <span className="hover:text-red-500 flex items-center justify-center gap-1 px-5 relative after:content-[''] after:absolute after:border-2 after:w-[80%] after:border-zinc-700 hover:after:border-red-500 after:transition-all after:duration-500 after:rounded-full hover:after:w-full after:bottom-0 before:content-[''] before:transition-all before:duration-500 before:rounded-full before:absolute before:border-2 before:border-zinc-700 hover:before:border-red-500 hover:before:w-[80%] before:bottom-[-6px] before:w-[40%] ">
-                    {e?.icon || ""}
-                    {e.name}
-                  </span>
-                </Link>
-              </div>
-            );
+          {navigation[navigationType].map((info, index) => {
+            return <LinkDobbleUnderline key={index} innerHTML={info.name} url={info.url} />
           })}
         </div>
 
@@ -80,7 +71,7 @@ export default function Navbar(props) {
                     width: "200px",
                   }}
                 >
-                  <LinkButtonMobile url={e.url} title={e.name} />
+                  <LinkBtn url={e.url} innerHTML={e.name} />
                 </div>
               );
             })}

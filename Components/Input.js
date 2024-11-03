@@ -158,6 +158,7 @@ export function ClassicInput(props){
                     minLength={props.minLength}
                     className="input absolute scale-0 opacity-0 w-full h-full font-semibold z-[-1]"
                     value={inputValue}
+                    autoComplete="off"
                     onFocus={(e) => {
                         document.getElementById(`inputCursor${id}`).classList.replace('border-0', 'border-[1px]')   
                     }}

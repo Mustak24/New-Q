@@ -1,11 +1,11 @@
-import { ButtonPc, ButtonMobile } from "@/Components/Button";
+import Button  from "@/Components/Button";
 import { ClassicInput, Textarea } from "@/Components/Input";
 import { PiMapPinLineBold } from "react-icons/pi";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { CardPc01, CardMobile01 } from "@/Components/Card";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import { useRouter } from "next/router";
@@ -13,10 +13,13 @@ import { useRouter } from "next/router";
 export default function Contact(props) {
   const { alerts, setAlert } = props;
   const router = useRouter()
+  const [isSendingQuery, setSendingQuery] = useState(false)
 
   async function QueryFormSubmit(e) {
+    setSendingQuery(true)
     e.preventDefault();
-    if (!window.navigator.onLine)
+    if (!window.navigator.onLine){
+      setSendingQuery(false)
       return setAlert([
         ...alerts,
         {
@@ -25,9 +28,13 @@ export default function Contact(props) {
           dec: "Query are not be Send due to no Internet connnection.",
         },
       ]);
+    }
     let formData = Object.fromEntries(new FormData(e.target));
     e.target.reset();
-    if(formData.contact == process.env.NEXT_PUBLIC_USERNAME && formData.msg == process.env.NEXT_PUBLIC_PASSWORD) return router.push(`/admin?username=${process.env.NEXT_PUBLIC_ADMIN_USERNAME}`)
+    if(formData.contact == process.env.NEXT_PUBLIC_USERNAME && formData.msg == process.env.NEXT_PUBLIC_PASSWORD){ 
+      setSendingQuery(false)
+      return router.push(`/admin?username=${process.env.NEXT_PUBLIC_ADMIN_USERNAME}`)
+    }
     setAlert([
       ...alerts,
       {
@@ -49,6 +56,7 @@ export default function Contact(props) {
 
     clearInterval(timer);
     setTimeout(() => {
+      setSendingQuery(false);
       if (res.alert) setAlert((alerts) => [...alerts, res.alert]);
     }, time);
   }
@@ -163,8 +171,7 @@ export default function Contact(props) {
                 required={true}
               />
               <div className="w-full">
-                <ButtonPc title="Send" class="max-md:hidden" />
-                <ButtonMobile title="Send" class="md:hidden" scale="200" />
+                <Button innerHTML="Send" tailwindcss='w-full' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
               </div>
             </form>
           </div>

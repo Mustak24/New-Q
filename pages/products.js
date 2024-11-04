@@ -68,6 +68,13 @@ export default function Products(props) {
                 <LinkBtn
                   innerHTML="Contact Us"
                   url="/contact"
+                  tailwindcss='max-sm:hidden'                      
+                />
+                <LinkBtn
+                  innerHTML="Contact Us"
+                  url="/contact"
+                  tailwindcss='sm:hidden'
+                  effect='active'      
                 />
               </div>
             </div>

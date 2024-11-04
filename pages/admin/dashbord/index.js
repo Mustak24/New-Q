@@ -5,6 +5,7 @@ import { IoAnalyticsOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import Loading from "@/Components/Loading";
 import Link from "next/link";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchProducts, fetchQuerys } from "@/Function/fetch";
@@ -42,7 +43,10 @@ export default function (props) {
     });
 }, [])
 
-  return (
+  return (<>
+  <Head>
+    <title>Dashbord</title>
+  </Head>
     <div className="w-screen h-screen relative flex max-sm:flex-col sm:flex-row overflow-hidden">
       <Asidebar/>
       <main className="flex items-center w-full h-full flex-col p-10 gap-10 overflow-y-scroll">
@@ -65,7 +69,7 @@ export default function (props) {
         </div>
       </main>
     </div>
-  );
+  </>);
 }
 
 export function Asidebar(){

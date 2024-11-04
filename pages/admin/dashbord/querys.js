@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Loading from "@/Components/Loading";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchQuerys } from "@/Function/fetch";
+import { RoundButton } from "@/Components/Button";
+import Head from "next/head";
 
 export default function (props) {
 
@@ -41,7 +43,8 @@ export default function (props) {
       
   },[])
 
-  return (
+  return (<>
+  <Head><title>Query Dashbord</title></Head>
     <div className="w-screen h-screen relative flex max-sm:flex-col sm:flex-row ">
       <Asidebar />
       <main className="p-5 w-full h-full relative px-10 mb-10 flex flex-col gap-5 max-sm:px-5">
@@ -53,7 +56,7 @@ export default function (props) {
         </div>
       </main>
     </div>
-  );
+  </>);
 }
 
 function QueryCard(props) {
@@ -72,12 +75,7 @@ function QueryCard(props) {
         <div className="self-end text-sm line-clamp-1">
           {info?.contact || "Contact"}
         </div>
-        <div
-          className="absolute text-[9px] font-bold font-sans cursor-pointer text-red-500 z-[1] transition-all duration-500 hover:text-white flex items-center justify-center size-10 overflow-hidden top-2 right-2 rounded-full border-2 border-red-500 after:contact-[''] after:z-[-1] after:absolute after:size-10 after:bg-red-500 after:top-[-80%] after:rounded-[40%] hover:after:top-[20%] after:duration-500 after:transition-all"
-          onClick={()=>deleteQuery(info)}
-        >
-          Delete
-        </div>
+        <RoundButton type='delete' onClick={()=>deleteQuery(info)} />
       </div>
     </div>
   );

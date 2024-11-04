@@ -1,5 +1,5 @@
 import Button  from "@/Components/Button";
-import { ClassicInput, Textarea } from "@/Components/Input";
+import { Input, Textarea } from "@/Components/Input";
 import { PiMapPinLineBold } from "react-icons/pi";
 import { IoIosMail } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
@@ -152,13 +152,13 @@ export default function Contact(props) {
               onSubmit={QueryFormSubmit}
               className="flex-col load-onetime-self center w-full max-w-[1000px] min-h-fit box-border gap-2"
             >
-              <ClassicInput
+              <Input
                 name="name"
                 type="text"
                 placeholder="Enter your Name"
                 required={true}
               />
-              <ClassicInput
+              <Input
                 name="contact"
                 type="text"
                 placeholder="Enter your Email"
@@ -171,7 +171,8 @@ export default function Contact(props) {
                 required={true}
               />
               <div className="w-full">
-                <Button innerHTML="Send" tailwindcss='w-full' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
+                <Button innerHTML="Send" tailwindcss='w-full max-sm:hidden' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
+                <Button innerHTML="Send" tailwindcss='w-full sm:hidden' effect='active' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
               </div>
             </form>
           </div>

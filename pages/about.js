@@ -2,6 +2,7 @@ import Loading from "@/Components/Loading";
 import { useEffect, useState } from "react";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import Head from "next/head";
 
 export default function About(props) {
   const [visiter, setVisiter] = useState({ Home: 0, All: 0 });
@@ -21,6 +22,7 @@ export default function About(props) {
 
   return (
     <>
+      <Head><title>About</title></Head>
       <div>
         <Navbar navigationType="user" />
         <div className="w-full h-screen center flex-col">

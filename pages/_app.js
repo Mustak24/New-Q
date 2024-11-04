@@ -12,10 +12,11 @@ export default function App({ Component, pageProps }) {
   const Loader = useRef()
 
   useEffect(()=>{
+    if(!Loader.current) return;
     router.events.on('routeChangeStart', ()=>{
         Loader.current.style.display = 'block'
         setTimeout(()=>{
-            Loader.current.style.transition = 'all 8s'
+          Loader.current.style.transition = 'all 8s'
             Loader.current.style.width = '80%';
         },1)
     })

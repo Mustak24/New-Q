@@ -7,6 +7,7 @@ import verifyAdminToken from "@/Function/verifyAdminToken";
 import { fetchproductImg, fetchProducts } from "@/Function/fetch";
 import Loading, { SpinLoader } from "@/Components/Loading";
 import { ProductImg } from "@/Components/Image";
+import Head from "next/head";
 
 export const ProductContext = createContext();
 
@@ -85,7 +86,8 @@ export default function (props) {
     deleteProduct, isUpdating, overloadingUpdates, setUpdateProductInfo
   }
 
-  return (
+  return (<>
+  <Head><title>Products Dashbord</title></Head>
     <ProductContext.Provider value={states}>
       <div className="w-screen relative flex max-sm:flex-col sm:flex-row ">
         <Asidebar />
@@ -93,7 +95,7 @@ export default function (props) {
           <form
             onSubmit={isUpdating ? overloadingUpdates : updateProduct}
             className="w-full max-w-[1000px] center flex-col my-10 gap-5"
-          >
+            >
             <h1 className="text-2xl font-sans font-bold">Product Form</h1>
             <div className="flex items-center flex-row w-full gap-10 max-sm:flex-col">
               <div className="flex flex-col items-center w-full gap-5">
@@ -114,7 +116,7 @@ export default function (props) {
               <label
                 htmlFor="productImg"
                 className="bg-zinc-500 rounded-md sm:h-[150px] max-sm:h-[250px] sm:w-[200px] max-sm:w-full center text-xl font-serif font-semibold text-white cursor-pointer relative overflow-hidden"
-              >
+                >
                 <input id="productImg" type="file" hidden
                   onChange={(e) => {
                     let file = e.target.files[0]
@@ -125,13 +127,14 @@ export default function (props) {
                   }}
                 />
                 {updateProductInfo.img ? (
-                    <Image src={updateProductInfo.img} width={400} height={250} className="absolute w-full h-full object-cover" alt="404" />
-                  ) : (
-                   updateProductInfo.id ? <ProductImg id={updateProductInfo.id} width={400} height={250} tailwindClass="absolute" /> : 'Upload Img'
+                  <Image src={updateProductInfo.img} width={400} height={250} className="absolute w-full h-full object-cover" alt="404" />
+                ) : (
+                  updateProductInfo.id ? <ProductImg id={updateProductInfo.id} width={400} height={250} tailwindClass="absolute" /> : 'Upload Img'
                 )}
               </label>
             </div>
-            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' tailwindcss='w-full' />
+            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' tailwindcss='w-full max-sm:hidden' />
+            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' effect='active' tailwindcss='w-full sm:hidden' />
           </form>
 
           <div className="flex flex-wrap items-center justify-center w-full h-full gap-5 py-10">
@@ -140,7 +143,7 @@ export default function (props) {
         </main>
       </div>
     </ProductContext.Provider>
-  );
+  </>);
 }
 
 function ProductCard(props) {

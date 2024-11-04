@@ -71,7 +71,8 @@ export default function Navbar(props) {
                     width: "200px",
                   }}
                 >
-                  <LinkBtn url={e.url} innerHTML={e.name} />
+                  <LinkBtn url={e.url} innerHTML={e.name} tailwindcss='w-full max-sm:hidden' />
+                  <LinkBtn url={e.url} innerHTML={e.name} effect='active' tailwindcss='w-full sm:hidden' />
                 </div>
               );
             })}

@@ -30,18 +30,18 @@ export function Input(props) {
 
     return (
         <>
-            <label htmlFor={id} className={`flex items-center border-2 relative rounded-full overflow-hidden min-w-[200px] w-full h-[40px] px-[15px] transition-all cursor-text has-[.input:invalid:not(:placeholder-shown)]:border-red-500 has-[.input:valid:not(:placeholder-shown)]:border-green-500 has-[.input:focus]:border-sky-500 border-black`}>
+            <label htmlFor={id} className={`flex items-center border-2 relative rounded-full overflow-hidden min-w-[200px] w-full h-[40px] transition-all cursor-text has-[.input:invalid:not(:placeholder-shown)]:border-red-500 has-[.input:valid:not(:placeholder-shown)]:border-green-500 has-[.input:focus]:border-sky-500 border-black`}>
                 <input
                     type={inputType}
                     name={props.name}
                     id={id}
                     placeholder={props.placeholder}
                     minLength={props.minLength}
-                    className="input mr-5 bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm w-full h-full outline-none"
+                    className="input px-[15px] bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm w-full h-full outline-none"
                 />
                 {
                     props.type == 'password' &&
-                        <div className="center absolute gap-5 right-0 translate-x-[50%] text-2xl text-zinc-700 hover:text-black cursor-pointer transition-all duration-1000" 
+                        <div className="center absolute gap-5 right-[-20px] translate-x-[50%] text-2xl text-zinc-700 hover:text-black cursor-pointer transition-all duration-1000" 
                         onClick={() => setPasswordShow((isPasswordShow) => {
                             setInputType(isPasswordShow ? 'password' : 'text');
                             setIconRotation(iconRotation + 180)

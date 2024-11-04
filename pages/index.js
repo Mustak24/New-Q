@@ -48,8 +48,11 @@ export default function Index() {
               </div>
             </div>
             <div className="center gap-3 flex-wrap">
-                <LinkBtn url="/about" innerHTML="Explore About Us" />
-                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} />
+                <LinkBtn url="/about" innerHTML="Explore About Us" tailwindcss='max-sm:hidden' />
+                <LinkBtn url="/about" innerHTML="Explore About Us" effect='active' tailwindcss='sm:hidden' />
+
+                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} tailwindcss='max-sm:hidden' />
+                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} effect='active' tailwindcss='sm:hidden' />
             </div>
           </div>
 
@@ -80,7 +83,7 @@ export default function Index() {
           </div>
 
           {/* Stiky slider */}
-          <div className="w-full relative p-5 flex max-md:flex-col items-start gap-10">
+          <div className="w-full relative p-5 flex max-md:flex-col items-start gap-10 max-sm:text-sm sm:text-lg">
             <div className="md:sticky p-5 top-20 md:w-1/2 center flex-col gap-5">
               <h1 className="font-serif font-semibold text-[2em] leading-10 text-pretty">
                 Discover the Power of Our Products
@@ -91,8 +94,10 @@ export default function Index() {
                 cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
                 commodo diam libero vitae erat.
               </p>
-
-                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} />
+              <div className="self-start">
+                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} tailwindcss='max-sm:hidden' />
+                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} effect='active' tailwindcss='sm:hidden' />
+              </div>
             </div>
             {/* Stiky Cards */}
             <div className="md:w-1/2 center flex-col gap-10">
@@ -150,7 +155,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="center p-10 w-full flex-col my-20">
+          <div className="center p-10 w-full flex-col my-20 max-sm:text-sm sm:text-lg">
             <div className="w-full load-child my-10 center flex-col gap-8">
               <h1 className="font-serif text-center text-[2.2em]">
                 Testimonials
@@ -164,17 +169,17 @@ export default function Index() {
 
             <div className="center flex-col gap-10">
               <div className="center load-child-sm flex-wrap w-full gap-10">
-                <div className="w-[300px] h-[200px] relative">
-                  {/* <ProfileCardPc01 name="Name" role="Role / Position" /> */}
+                <div className="w-full max-w-[300px] h-[200px] relative">
+                  <ProfileCardPc01 name="Name" role="Role / Position" />
                 </div>
-                <div className="w-[300px] h-[200px] relative">
-                  {/* <ProfileCardPc01 name="Name2" role="Role / Position" /> */}
+                <div className="w-full max-w-[300px] h-[200px] relative">
+                  <ProfileCardPc01 name="Name" role="Role / Position" />
                 </div>
-                <div className="w-[300px] h-[200px] relative">
-                  {/* <ProfileCardPc01 name="Name" role="Role / Position" /> */}
+                <div className="w-full max-w-[300px] h-[200px] relative">
+                  <ProfileCardPc01 name="Name" role="Role / Position" />
                 </div>
-                <div className="w-[300px] h-[200px] relative">
-                  {/* <ProfileCardPc01 name="Name2" role="Role / Position" /> */}
+                <div className="w-full max-w-[300px] h-[200px] relative">
+                  <ProfileCardPc01 name="Name" role="Role / Position" />
                 </div>
               </div>
             </div>
@@ -196,7 +201,7 @@ export function ProfileCardPc01(props) {
               </div>
               <div className="flex flex-col text-md">
                   <div className="font-semibold">{props.name}</div>
-                  <div className="opacity-[.7]">{props.role}</div>
+                  <div className="opacity-[.7] text-[.9em]">{props.role}</div>
               </div>
           </div>
           <p className="text-pretty text-[.95em] font-sans line-clamp-3">{props.dic}</p>

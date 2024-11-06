@@ -37,11 +37,11 @@ export function Input(props) {
                     id={id}
                     placeholder={props.placeholder}
                     minLength={props.minLength}
-                    className="input px-[15px] bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm w-full h-full outline-none"
+                    className={`input px-[15px] bg-transparent font-[700] placeholder:font-[500] placeholder:text-gray-700 text-black text-sm w-full h-full outline-none ${props.type == 'password' && 'mr-8'}`}
                 />
                 {
                     props.type == 'password' &&
-                        <div className="center absolute gap-5 right-[-20px] translate-x-[50%] text-2xl text-zinc-700 hover:text-black cursor-pointer transition-all duration-1000" 
+                        <div className="center absolute gap-5 right-[0px] translate-x-[50%] text-2xl text-zinc-700 hover:text-black cursor-pointer transition-all duration-1000" 
                         onClick={() => setPasswordShow((isPasswordShow) => {
                             setInputType(isPasswordShow ? 'password' : 'text');
                             setIconRotation(iconRotation + 180)

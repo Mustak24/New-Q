@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
   const Loader = useRef()
 
   useEffect(()=>{
-    if(!Loader.current) return;
+    if(!Loader?.current) return;
     router.events.on('routeChangeStart', ()=>{
         Loader.current.style.display = 'block'
         setTimeout(()=>{

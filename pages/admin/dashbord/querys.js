@@ -75,7 +75,7 @@ function QueryCard(props) {
         <div className="self-end text-sm line-clamp-1">
           {info?.contact || "Contact"}
         </div>
-        <RoundButton type='delete' onClick={()=>deleteQuery(info)} />
+        <RoundButton text='red' innerHTML="Delete" onClick={()=>deleteQuery(info)} />
       </div>
     </div>
   );

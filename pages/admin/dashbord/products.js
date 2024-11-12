@@ -189,8 +189,8 @@ function ProductCard(props) {
         </div>
       </div>
       <div className="absolute right-3 bottom-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <RoundButton type='edit' onClick={() => isUpdating ? overloadingUpdates() : editProduct()} />
-        <RoundButton type='delete' onClick={() => isUpdating ? overloadingUpdates() : deleteProduct(info)} />
+        <RoundButton innerHTML='Edit' text="royalblue" onClick={() => isUpdating ? overloadingUpdates() : editProduct()} />
+        <RoundButton innerHTML='Delete' text="red" onClick={() => isUpdating ? overloadingUpdates() : deleteProduct(info)} />
       </div>
     </div>
   );

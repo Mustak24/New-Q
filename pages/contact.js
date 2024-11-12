@@ -1,4 +1,4 @@
-import Button  from "@/Components/Button";
+import Button, {LongWidthBnt, ClassicButton01}  from "@/Components/Button";
 import { Input, Textarea } from "@/Components/Input";
 import { PiMapPinLineBold } from "react-icons/pi";
 import { IoIosMail } from "react-icons/io";
@@ -171,8 +171,8 @@ export default function Contact(props) {
                 required={true}
               />
               <div className="w-full">
-                <Button innerHTML="Send" tailwindcss='w-full max-sm:hidden' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
-                <Button innerHTML="Send" tailwindcss='w-full sm:hidden' effect='active' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
+                <LongWidthBnt innerHTML="Send" tailwindcss='w-full max-sm:hidden' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
+                <ClassicButton01 innerHTML="Send" tailwindcss='w-full sm:hidden' isLoading={isSendingQuery} loadingInnerHTML='Wait Sending ...'  />
               </div>
             </form>
           </div>

@@ -1,17 +1,12 @@
 import Link from "next/link"
 
-export function LinkBtn ({url='#', tailwindcss='', onClick=()=>{}, text='black', bg='white', innerHTML='Link'}){ 
-    const Effects = {
-        'hover': `max-sm:hover:before:scale-[150] max-sm:hover:after:scale-[150] max-md:hover:before:scale-[200] max-md:hover:after:scale-[200] max-lg:hover:before:scale-[400] max-lg:hover:after:scale-[400] hover:before:scale-[800] hover:after:scale-[800]`,
-        'active': `max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] max-md:active:before:scale-[200] max-md:active:after:scale-[200] max-lg:active:before:scale-[400] max-lg:active:after:scale-[400] active:before:scale-[800] active:after:scale-[800]`
-    }
-
+export function LinkBtn ({url='#', tailwindcss='', onClick=()=>{}, text='black', bg='white', innerHTML='Link', scale=300}){ 
     return (
         <Link
             href={url} 
-            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 h-fit min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[300] sm:hover:after:scale-[300]`}
+            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 h-fit min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] sm:hover:bg-transparent max-sm:active:bg-transparent after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[var(--scale)] sm:hover:after:scale-[var(--scale)]`}
             onClick={onClick || function(){}}
-            style={{'--text': text, '--bg': bg}}
+            style={{'--text': text, '--bg': bg, '--scale':scale}}
         >
             {innerHTML}
         </Link>

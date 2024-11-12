@@ -48,9 +48,9 @@ export default function Index() {
               </div>
             </div>
             <div className="center gap-3 flex-wrap">
-                <LinkBtn url="/about" innerHTML="Explore About Us" />
+                <LinkBtn url="/about" innerHTML="Explore About Us" scale={60} />
 
-                <LinkBtn url="/contact" innerHTML="Get in Touch" text='crimson' />
+                <LinkBtn url="/contact" innerHTML="Get in Touch" text='crimson' scale={60} />
             </div>
           </div>
 
@@ -93,7 +93,7 @@ export default function Index() {
                 commodo diam libero vitae erat.
               </p>
               <div className="self-start">
-                <LinkBtn innerHTML="Explore Our Products" url="/products" text='crimson' />
+                <LinkBtn innerHTML="Explore Our Products" url="/products" text='crimson' scale={90} />
               </div>
             </div>
             {/* Stiky Cards */}

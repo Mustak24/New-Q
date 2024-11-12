@@ -12,15 +12,16 @@ export default function App({ Component, pageProps }) {
   const Loader = useRef()
 
   useEffect(()=>{
-    if(!Loader?.current) return;
     router.events.on('routeChangeStart', ()=>{
-        Loader.current.style.display = 'block'
-        setTimeout(()=>{
-          Loader.current.style.transition = 'all 8s'
-            Loader.current.style.width = '80%';
-        },1)
+      if(!Loader?.current) return;
+      Loader.current.style.display = 'block'
+      setTimeout(()=>{
+        Loader.current.style.transition = 'all 8s'
+        Loader.current.style.width = '80%';
+      },1)
     })
     router.events.on('routeChangeComplete', ()=>{
+      if(!Loader?.current) return;
         setTimeout(() => {
             Loader.current.style.transition = 'all .1s'
             Loader.current.style.width = '100%';   

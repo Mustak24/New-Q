@@ -2,11 +2,11 @@
 import { TbCubeSend } from "react-icons/tb";
 
 
-export default function Button({isLoading=false, loadingInnerHTML='Wait ...', tailwindcss='', text='black', bg='white', innerHTML='Click', onClick=()=>{} }) {
+export default function Button({isLoading=false, loadingInnerHTML='Wait ...', tailwindcss='', text='black', bg='white', innerHTML='Click', onClick=()=>{}, scale=300 }) {
     return (
         <button
-            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] active:after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[300] sm:hover:after:scale-[300]`}
-            style={{ '--bg': bg, '--text': text }}
+            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] sm:hover:bg-transparent max-sm:active:bg-transparent active:after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[var(--scale)] sm:hover:after:scale-[var(--scale)]`}
+            style={{ '--bg': bg, '--text': text, '--scale':scale }}
             onClick={onClick || function () {}}
         >
             {
@@ -40,7 +40,7 @@ export function RoundButton({tailwindcss='', text='', onClick=()=>{}, innerHTML=
 export function ClassicButton01({ tailwindcss = '', isLoading = false, loadingInnerHTML = 'Wait  das dasd...', innerHTML = 'Click', text='black', bg='white' }) {
 
     return (<>
-        <button className={`${tailwindcss} min-h-10 font-sans flex items-center justify-center relative transition-all duration-300 shadow-[0_0_10px_rgb(0,0,0,.3)] overflow-hidden text-[var(--text)] active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] font-bold px-5 rounded-full z-[1] after:content-[''] after:absolute after:z-[-1] after:bg-[var(--text)] after:size-full after:rotate-90 sm:hover:after:rotate-0 max-sm:active:after:rotate-0 after:invisible hover:after:visible after:origin-bottom-right after:transition-all sm:after:duration-300 before:content-[''] before:z-[-1] before:absolute before:invisible hover:before:visible before:size-full before:bg-[var(--text)] before:rotate-90 sm:hover:before:rotate-0 max-sm:active:before:rotate-0 before:origin-top-left before:transition-all sm:before:duration-300 group`}
+        <button className={`${tailwindcss} min-h-10 font-sans flex items-center justify-center relative transition-all duration-300 shadow-[0_0_10px_rgb(0,0,0,.3)] overflow-hidden text-[var(--text)] active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] sm:hover:bg-transparent max-sm:active:bg-transparent font-bold px-5 rounded-full z-[1] after:content-[''] after:absolute after:z-[-1] after:bg-[var(--text)] after:size-full after:rotate-90 sm:hover:after:rotate-0 max-sm:active:after:rotate-0 after:invisible hover:after:visible after:origin-bottom-right after:transition-all sm:after:duration-300 before:content-[''] before:z-[-1] before:absolute before:invisible hover:before:visible before:size-full before:bg-[var(--text)] before:rotate-90 sm:hover:before:rotate-0 max-sm:active:before:rotate-0 before:origin-top-left before:transition-all sm:before:duration-300 group`}
             style={{ '--bg': bg, '--text': text }}
         >
             {

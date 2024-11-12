@@ -18,19 +18,14 @@ export default function (props) {
     </>)
 }
 
-export function SpinLoader(props) {
-
-    const themes = {
-        'black-white': ['border-black', 'border-t-white'],
-        'white-black': ['border-white', 'border-t-black'],
-        'white-blue-500': ['border-blue-500', 'border-t-blue-500'],
-        'blue-500-white': ['border-white', 'border-t-white'],
-    }
-
-    const sizes = {
-        'lg': ['size-[60px]', 'border-[10px]'],
-        'sm': ['size-5', 'border-[5px]']
-    }
-
-    return (<div className={`rounded-full animate-spin ${(themes[props?.theme || 'black-white'])?.join(' ')}  ${(sizes[props.size])?.join(' ')} ${props.tailwindClass}`}>{props.innnerHTML}</div>)
+export function SpinLoader({priColor='black', secColor='white', size='20px', border='6px', tailwindcss, isHover=false}) {
+    return (<div 
+        className={`${tailwindcss} rounded-full animate-spin size-[var(--size)]`}
+        style={{
+          '--size': size, 
+          borderWidth: border,
+          borderColor: isHover ? 'transparent' : priColor,
+          borderTopColor: isHover ? secColor : 'transparent',
+        }}
+      ></div>)
 }

@@ -1,6 +1,6 @@
 import { Asidebar } from ".";
 import Image from "next/image";
-import Button, { RoundButton } from "@/Components/Button";
+import { RoundButton, LongWidthBnt, ClassicButton01 } from "@/Components/Button";
 import { useEffect, useState, useContext, createContext } from "react";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
@@ -133,8 +133,8 @@ export default function (props) {
                 )}
               </label>
             </div>
-            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' tailwindcss='w-full max-sm:hidden' />
-            <Button innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' effect='active' tailwindcss='w-full sm:hidden' />
+            <LongWidthBnt innerHTML='Product Update' isLoading={isUpdating} loadingInnerHTML='Wait Updating ...' tailwindcss='w-full max-md:hidden' />
+            <ClassicButton01 innerHTML="Products Update" isLoading={isUpdating} loadingInnerHTML="Wait Updating ..." tailwindcss="w-full md:hidden" />
           </form>
 
           <div className="flex flex-wrap items-center justify-center w-full h-full gap-5 py-10">
@@ -167,7 +167,7 @@ function ProductCard(props) {
   return (
     <div className="center relative overflow-hidden w-full max-w-[400px] h-[250px] rounded-lg bg-[#18181b] after:border-2 after:border-sky-500 hover:after:h-[90%] after:h-0 after:absolute after:left-2 after:duration-300 after:transition-all after:rounded-full before:size-[1px] before:absolute before:bg-[rgb(225,225,225,.1)] before:rounded-full before:left-1 before:top-1 hover:before:shadow-[0_0_100px_50px_rgb(225,225,255,.3)] before:transition-all duration-[1s] group">
       {isLoading ? (
-        <SpinLoader theme='lightblue-blue' size='lg' />
+        <SpinLoader theme='lightblue-blue' size='50px' border='10px' priColor="white" secColor="black" />
       ) : (
         <Image
           className={`w-full h-full object-cover group-hover:scale-[1.05] transition-all`}
@@ -189,8 +189,12 @@ function ProductCard(props) {
         </div>
       </div>
       <div className="absolute right-3 bottom-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <RoundButton innerHTML='Edit' text="royalblue" onClick={() => isUpdating ? overloadingUpdates() : editProduct()} />
-        <RoundButton innerHTML='Delete' text="red" onClick={() => isUpdating ? overloadingUpdates() : deleteProduct(info)} />
+        <div className="translate-y-[100%] group-hover:translate-y-0 transition-all duration-300">
+          <RoundButton innerHTML='Edit' text="royalblue" onClick={() => isUpdating ? overloadingUpdates() : editProduct()} />
+        </div>
+        <div className="translate-y-[200%] group-hover:translate-y-0 transition-all duration-300">
+          <RoundButton innerHTML='Delete' text="red" onClick={() => isUpdating ? overloadingUpdates() : deleteProduct(info)} />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import Button, {LongWidthBnt, ClassicButton01}  from "@/Components/Button";
+import {LongWidthBnt, ClassicButton01}  from "@/Components/Button";
 import { Input, Textarea } from "@/Components/Input";
 import { PiMapPinLineBold } from "react-icons/pi";
 import { IoIosMail } from "react-icons/io";

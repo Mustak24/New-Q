@@ -1,6 +1,3 @@
-import Image from "next/image"
-
-
 
 
 export function CardPc01(props) {

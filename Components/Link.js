@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
 export function LinkBtn ({url='#', tailwindcss='', onClick=()=>{}, text='black', bg='white', innerHTML='Link'}){ 
     const Effects = {
@@ -10,7 +9,7 @@ export function LinkBtn ({url='#', tailwindcss='', onClick=()=>{}, text='black',
     return (
         <Link
             href={url} 
-            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 h-fit min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] active:after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[200] sm:hover:after:scale-[200] md:hover:before:scale-[400] md:hover:after:scale-[400] hover:before:scale-[800] hover:after:scale-[800]`}
+            className={`${tailwindcss} relative z-[1] font-bold overflow-hidden shadow-[0_0_10px_rgb(0,0,0,.3)] px-5 h-fit min-h-10 z-1 rounded-full flex items-center justify-center flex-col text-center transition-all duration-500 text-[var(--text)] max-sm:active:text-[var(--bg)] sm:hover:text-[var(--bg)] bg-[var(--bg)] after:content-[''] after:border-2 after:border-[var(--text)] after:self-start after:z-[-1] after:rounded-full before:content-[''] before:self-end before:z-[-1] before:border-2 before:border-[var(--text)] before:rounded-full before:transition-all after:transition-all max-sm:active:before:scale-[150] max-sm:active:after:scale-[150] sm:hover:before:scale-[300] sm:hover:after:scale-[300]`}
             onClick={onClick || function(){}}
             style={{'--text': text, '--bg': bg}}
         >

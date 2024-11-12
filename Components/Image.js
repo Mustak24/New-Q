@@ -66,8 +66,8 @@ export function ProductImg(props) {
   }, [])
 
   return (<>
-    {isLoading ? <SpinLoader theme='lightblue-blue' size='lg' tailwindClass={props.tailwindClass} /> : <Image
-      className={`w-full h-full object-cover transition-all ${props.tailwindClass}`}
+    {isLoading ? <SpinLoader  size='60px' border='10px' priColor="royalblue" secColor="royalblue" tailwindcss={props.loadercss} /> : <Image
+      className={`w-full h-full object-cover transition-all ${props.tailwindcss}`}
       width={props?.width || 400}
       height={props?.height || 250}
       src={img || '/ProductsDefaultImg.jpg'}

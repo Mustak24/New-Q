@@ -48,11 +48,9 @@ export default function Index() {
               </div>
             </div>
             <div className="center gap-3 flex-wrap">
-                <LinkBtn url="/about" innerHTML="Explore About Us" tailwindcss='max-sm:hidden' />
-                <LinkBtn url="/about" innerHTML="Explore About Us" effect='active' tailwindcss='sm:hidden' />
+                <LinkBtn url="/about" innerHTML="Explore About Us" />
 
-                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} tailwindcss='max-sm:hidden' />
-                <LinkBtn url="/contact" innerHTML="Get in Touch" theme={{bg: 'white', text: 'red-500'}} effect='active' tailwindcss='sm:hidden' />
+                <LinkBtn url="/contact" innerHTML="Get in Touch" text='crimson' />
             </div>
           </div>
 
@@ -95,8 +93,7 @@ export default function Index() {
                 commodo diam libero vitae erat.
               </p>
               <div className="self-start">
-                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} tailwindcss='max-sm:hidden' />
-                <LinkBtn innerHTML="Explore Our Products" url="/products" theme={{text: 'red-500'}} effect='active' tailwindcss='sm:hidden' />
+                <LinkBtn innerHTML="Explore Our Products" url="/products" text='crimson' />
               </div>
             </div>
             {/* Stiky Cards */}

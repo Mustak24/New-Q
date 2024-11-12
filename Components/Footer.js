@@ -40,7 +40,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-
+            <div className="absolute bottom-1 right-1 font-serif">By @Mustak24</div>
         </footer>
     </>)
 }

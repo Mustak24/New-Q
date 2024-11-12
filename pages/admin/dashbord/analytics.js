@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import verifyAdminToken from "@/Function/verifyAdminToken";
 import Head from "next/head";
+import { LongWidthBnt, ClassicButton02 } from "@/Components/Button";
+import { LuSend } from "react-icons/lu";
 
 export default function (){
    
@@ -18,7 +20,8 @@ export default function (){
         <div className="w-screen h-screen relative flex max-sm:flex-col sm:flex-row ">
             <Asidebar/>
             <main className="w-full h-full center">
-                <Loading title='On Working' /> 
+                {/* <Loading title='On Working' />  */}
+                <LongWidthBnt tailwindcss="w-full" icon={<LuSend />} />
             </main>
         </div>
     </>)

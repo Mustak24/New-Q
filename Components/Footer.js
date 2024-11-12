@@ -10,29 +10,21 @@ export default function Footer() {
                 <p className="text-pretty">Subscribe to our newsletter for the latest updates on new features and product releases.</p>
                 <form className="my-5 flex gap-5 max-sm:flex-col">
                     <input name="email" type="email" placeholder="Enter your Email" className="w-full h-10 rounded-full center text-center px-5 text-black outline-none border-2 [&:not(:placeholder-shown)]:invalid:border-red-500 [&:not(:placeholder-shown)]:valid:border-green-500" required />
-                    <Button innerHTML='Subscribe' tailwindcss='border-2 max-sm:hidden'/>
-                    <Button innerHTML='Subscribe' effect='active' tailwindcss='border-2 sm:hidden'/>
+                    <Button innerHTML='Subscribe' tailwindcss='border-2 w-[150px]'/>
                 </form>
             </div>
 
             <div className="w-2/3 max-lg:w-full center p-5 flex-col">
                 <div className="max-lg:hidden">
                     <div className="flex flex-wrap w-full p-5 items-center overflow-hidden rounded-xl gap-5">
-                        <LinkBtn innerHTML='About Us' url='/about' scale='30' tailwindcss='border-2 max-sm:hidden' />
-                        <LinkBtn innerHTML='About Us' url='/about' scale='30' effect='active' tailwindcss='border-2 sm:hidden' />
-                        
-                        <LinkBtn innerHTML='Contact Info' url='/contact' scale='40' tailwindcss='border-2 max-sm:hidden' />
-                        <LinkBtn innerHTML='Contact Info' url='/contact' scale='40' effect='active' tailwindcss='border-2 sm:hidden' />
-                        
-                        <LinkBtn innerHTML='Explore Us' url='/' scale='30' tailwindcss='border-2 max-sm:hidden' />
-                        <LinkBtn innerHTML='Explore Us' url='/' scale='30' effect='active' tailwindcss='border-2 sm:hidden' />
-                        
-                        <LinkBtn innerHTML='Products' url='products' scale='30' tailwindcss='border-2 max-sm:hidden' />
-                        <LinkBtn innerHTML='Products' url='products' scale='30' effect='active' tailwindcss='border-2 sm:hidden' />
+                        <LinkBtn innerHTML='About Us' url='/about' tailwindcss='border-2' />
+                        <LinkBtn innerHTML='Contact Info' url='/contact' scale='40' tailwindcss='border-2' />
+                        <LinkBtn innerHTML='Explore Us' url='/' tailwindcss='border-2' />
+                        <LinkBtn innerHTML='Products' url='products' tailwindcss='border-2' />
                     </div>
                     <div className="flex flex-wrap w-full p-5 items-center overflow-hidden rounded-xl gap-5">
-                        <LinkBtn innerHTML='Facebook' scale='30' tailwindcss='border-2 max-sm:hidden' />
-                        <LinkBtn innerHTML='Whatsapp' scale='30' effect='active' tailwindcss='border-2 sm:hidden' />
+                        <LinkBtn innerHTML='Facebook' tailwindcss='border-2' />
+                        <LinkBtn innerHTML='Whatsapp' tailwindcss='border-2' />
                     </div>
                 </div>
                 <div className="lg:hidden">

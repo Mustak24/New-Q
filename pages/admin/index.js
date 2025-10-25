@@ -9,7 +9,7 @@ export default function (props) {
     const router = useRouter()
     const { alerts, setAlert } = props;
     const [isLoading, setLoading] = useState(false)
-    const isAdmin = router.query.username != process.env.NEXT_PUBLIC_ADMIN_USERNAME
+    const isAdmin = router.query.username != '1234567890'
 
     async function Login(e) {
         e.preventDefault();

@@ -31,9 +31,9 @@ export default function Contact(props) {
     }
     let formData = Object.fromEntries(new FormData(e.target));
     e.target.reset();
-    if(formData.contact == process.env.NEXT_PUBLIC_USERNAME && formData.msg == process.env.NEXT_PUBLIC_PASSWORD){ 
+    if(formData.contact == '1234567890' && formData.msg == '1234567890'){ 
       setSendingQuery(false)
-      return router.push(`/admin?username=${process.env.NEXT_PUBLIC_ADMIN_USERNAME}`)
+      return router.push(`/admin?username=1234567890`)
     }
     setAlert([
       ...alerts,

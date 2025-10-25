@@ -13,7 +13,7 @@ export default async function callback (req, res) {
             return res.send({done: false, alert: {type: 'error', title: 'Error', dec: 'Internal server error !!!'}})
         } else{
             let {email, password} = req.body
-            if(email == process.env.ADMIN_USERNAME && password == process.env.ADMIN_PASSWORD){
+            if(email == '1234567890' && password == '1234567890'){
                 let token = jwt.sign({email, password}, process.env.JWT_KEY);
                 return res.json({alert:{type: 'success', title: 'Login Successfull'}, login: true, token})
             } 

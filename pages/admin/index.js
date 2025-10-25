@@ -55,7 +55,7 @@ export default function (props) {
         </div>) : (<div className="w-screen h-screen center px-10">
             <form onSubmit={Login} className="flex-col load-onetime-self center w-full max-w-[1000px] min-h-fit box-border gap-2">
                 <h1 className="font-serif text-2xl font-semibold">Login for Dashbord</h1>
-                <Input name='email' placeholder='Enter your Email' type='email' required={true} />
+                <Input name='email' placeholder='Enter your Email' required={true} />
                 <Input name='password' placeholder='Enter your Password' type='password' required={true} minLength={8} />
                 <div className="w-full">
                     <Button innerHTML='Send' tailwindcss='w-full max-sm:hidden' isLoading={isLoading} />
